@@ -134,6 +134,14 @@ const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 2
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
+// the logo reloads the page and lands back at the top
+document.querySelector('.logo').addEventListener('click', (e) => {
+  e.preventDefault();
+  history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+  location.reload();
+});
+
 const setMenu = (open) => {
   nav.classList.toggle('is-open', open);
   burger.setAttribute('aria-expanded', String(open));
