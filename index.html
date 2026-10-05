@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vantum — Creative Digital Strategies</title>
-  <meta name="description" content="Consulting, AI, CX / UX / UI, Web &amp; App Development and Customer Support.">
+  <title data-i18n="meta.title">Vantum — Creative Digital Strategies</title>
+  <meta name="description" id="metaDesc" content="Consulting, AI, CX / UX / UI, Web &amp; App Development and Customer Support.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
@@ -18,20 +18,24 @@
       <a href="#home" class="logo" aria-label="Vantum — home">V<span>A</span>NTUM</a>
 
       <nav class="nav" id="nav" aria-label="Main">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#work">Case Studies</a>
-        <a href="#about">Services</a>
-        <a href="#cta">Business Solutions</a>
-        <a href="#feedback">News</a>
-        <a href="#contact">Contact</a>
+        <a href="#home" data-i18n="nav.home">Home</a>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#work" data-i18n="nav.cases">Case Studies</a>
+        <a href="#about" data-i18n="nav.services">Services</a>
+        <a href="#cta" data-i18n="nav.solutions">Business Solutions</a>
+        <a href="#feedback" data-i18n="nav.news">News</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
 
       <div class="header__actions">
-        <span class="lang">EN
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <a href="#contact" class="btn btn--primary">Work with us</a>
+        <div class="lang" id="lang">
+          <button class="lang__btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="langMenu" aria-label="Choose language" data-i18n-aria="header.lang">
+            <span id="langCurrent">EN</span>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="lang__menu" id="langMenu" role="listbox" hidden></ul>
+        </div>
+        <a href="#contact" class="btn btn--primary" data-i18n="header.cta">Work with us</a>
         <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">
           <span></span><span></span><span></span>
         </button>
@@ -47,29 +51,18 @@
         <div class="blob blob--big" aria-hidden="true"></div>
 
         <h1 class="hero__title">
-          <span>Creative</span>
-          <span class="accent">Digital</span>
-          <span>Strategies.</span>
+          <span data-i18n="hero.t1">Creative</span>
+          <span class="accent" data-i18n="hero.t2">Digital</span>
+          <span data-i18n="hero.t3">Strategies.</span>
         </h1>
-        <p class="hero__sub">Consulting • AI • CX / UX / UI • Web &amp; App Development • Customer Support</p>
+        <p class="hero__sub" data-i18n="hero.sub">Consulting • AI • CX / UX / UI • Web &amp; App Development • Customer Support</p>
       </div>
     </section>
 
-    <!-- ============ CLIENTS ============ -->
+    <!-- ============ INTRO ============ -->
     <section class="clients">
       <div class="container">
-        <p class="clients__label">Trusted by international clients</p>
-        <ul class="clients__row">
-          <li class="client client--serif">NORTH<br>LOGISTICS</li>
-          <li class="client client--light">✺ sol<b>aria</b></li>
-          <li class="client client--small">∿ WattEverywhere</li>
-          <li class="client client--bold">Brickwerk</li>
-          <li class="client client--xl">Alpha</li>
-          <li class="client client--condensed">❋ CASANOVA</li>
-          <li class="client client--wide">≠ DISTINCT</li>
-          <li class="client client--bold">Learnly<sup>®</sup></li>
-        </ul>
-        <p class="clients__text">We transform &amp; support your company's digital system from scratch to success or from where it is to where it needs to be</p>
+        <h2 class="clients__headline" data-i18n="clients.headline">We turn ideas into digital systems that grow</h2>
       </div>
     </section>
 
@@ -77,21 +70,21 @@
     <section class="work" id="work">
       <canvas class="dots" id="workDots" aria-hidden="true"></canvas>
       <div class="container">
-        <h2 class="section-title"><span>Our Work</span></h2>
+        <h2 class="section-title"><span data-i18n="work.title">Our Work</span></h2>
       </div>
 
       <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Case studies">
         <div class="carousel__stage" id="carouselStage"></div>
         <div class="carousel__nav">
-          <button class="carousel__arrow" id="prev" aria-label="Previous project">
+          <button class="carousel__arrow" id="prev" aria-label="Previous project" data-i18n-aria="work.prev">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M14 4 7 11l7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <button class="carousel__arrow" id="next" aria-label="Next project">
+          <button class="carousel__arrow" id="next" aria-label="Next project" data-i18n-aria="work.next">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="m8 4 7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <div class="carousel__all">
-          <a href="#work" class="btn btn--outline">See all work</a>
+          <a href="#work" class="btn btn--outline" data-i18n="work.all">See all work</a>
         </div>
       </div>
     </section>
@@ -100,27 +93,27 @@
     <section class="process" id="about">
       <div class="container process__inner">
         <div class="process__left reveal">
-          <span class="process__label">Our Process</span>
+          <span class="process__label" data-i18n="process.label">Our Process</span>
           <ul class="process__steps">
-            <li>Ideate</li>
-            <li>Design</li>
-            <li>Develop</li>
-            <li>Deploy</li>
-            <li>Support</li>
+            <li data-i18n="process.s1">Ideate</li>
+            <li data-i18n="process.s2">Design</li>
+            <li data-i18n="process.s3">Develop</li>
+            <li data-i18n="process.s4">Deploy</li>
+            <li data-i18n="process.s5">Support</li>
           </ul>
         </div>
 
         <div class="process__right reveal">
-          <h3>Services</h3>
-          <p>Consulting • AI • CX / UX / UI • Web &amp; App Development • Customer Support</p>
+          <h3 data-i18n="about.services">Services</h3>
+          <p data-i18n="about.servicesText">Consulting • AI • CX / UX / UI • Web &amp; App Development • Customer Support</p>
 
-          <h3>Who are we</h3>
-          <p>A group of dedicated professionals that are passionate about technology and client success. Each of us are experts in their field with more than 10 years experience.</p>
+          <h3 data-i18n="about.who">Who are we</h3>
+          <p data-i18n="about.whoText">A team of professionals passionate about technology, creativity and growing businesses in the digital world. We combine expertise, bold ideas and technology to build solutions that don&#39;t just look good, but create real value for our clients.</p>
 
-          <h3>Our mission</h3>
-          <p>To create and expand digital business with an ethic approach. We are here to help small and medium size companies that need professional expertise to launch or relaunch products using digital services.</p>
+          <h3 data-i18n="about.mission">Our mission</h3>
+          <p data-i18n="about.missionText">To create and expand digital business with an ethic approach. We are here to help small and medium size companies that need professional expertise to launch or relaunch products using digital services.</p>
 
-          <a href="#contact" class="btn btn--primary">Let's connect</a>
+          <a href="#contact" class="btn btn--primary" data-i18n="about.btn">Let's connect</a>
         </div>
       </div>
     </section>
@@ -128,32 +121,32 @@
     <!-- ============ STATS ============ -->
     <section class="stats">
       <div class="container stats__grid">
-        <div class="stat"><strong data-count="17" data-suffix="+">0</strong><span>Years of experience</span></div>
-        <div class="stat"><strong data-count="97" data-suffix="+">0</strong><span>Happy clients</span></div>
-        <div class="stat"><strong data-count="149">0</strong><span>Projects completed</span></div>
-        <div class="stat"><strong data-count="7">0</strong><span>Years on the market</span></div>
-        <div class="stat"><strong data-count="5" data-suffix="+">0</strong><span>Countries served</span></div>
+        <div class="stat"><strong data-count="5" data-suffix="+">0</strong><span data-i18n="stats.s1">Digital services</span></div>
+        <div class="stat"><strong data-count="99" data-final="∞">0</strong><span data-i18n="stats.s2">Possibilities</span></div>
+        <div class="stat"><strong data-count="100" data-suffix="%">0</strong><span data-i18n="stats.s3">Personalization</span></div>
+        <div class="stat"><strong data-count="360" data-suffix="°">0</strong><span data-i18n="stats.s4">Digital strategy</span></div>
+        <div class="stat"><strong data-count="99" data-prefix="+" data-final="+∞">0</strong><span data-i18n="stats.s5">Growth potential</span></div>
       </div>
     </section>
 
     <!-- ============ CTA ============ -->
     <section class="cta" id="cta">
       <div class="container reveal">
-        <h2>Best things in life are simple but <br>simple is not simple</h2>
-        <p>Book a meeting with us today and take the first step toward smarter business.</p>
-        <a href="#contact" class="btn btn--primary">Let's talk</a>
+        <h2 data-i18n-html="cta.title">Best things in life are simple but <br>simple is not simple</h2>
+        <p data-i18n="cta.text">Book a meeting with us today and take the first step toward smarter business.</p>
+        <a href="#contact" class="btn btn--primary" data-i18n="cta.btn">Let's talk</a>
       </div>
     </section>
 
     <!-- ============ FEEDBACK ============ -->
     <section class="feedback" id="feedback">
       <div class="container">
-        <h2 class="section-title"><span>Real Results. Real Feedback.</span></h2>
+        <h2 class="section-title"><span data-i18n="feedback.title">Real Results. Real Feedback.</span></h2>
 
         <figure class="testimonial reveal">
-          <div class="testimonial__avatar" aria-hidden="true">JD</div>
-          <figcaption>Jane Doe, Example Studio</figcaption>
-          <blockquote>
+          <div class="testimonial__avatar" aria-hidden="true">“</div>
+          <figcaption data-i18n="feedback.author">Online store owner</figcaption>
+          <blockquote data-i18n="feedback.quote">
             "Working with the team completely transformed our brand presence. From the very first strategy session, they understood our vision and translated it into a bold, cohesive identity that truly speaks to our audience. The results exceeded our expectations, and we've seen a noticeable boost in engagement and client trust since the rebrand."
           </blockquote>
         </figure>
@@ -161,34 +154,41 @@
     </section>
   </main>
 
+  <!-- ============ CASE STUDY MODAL ============ -->
+  <dialog class="case" id="caseModal" aria-labelledby="caseTitle">
+    <button class="case__close" id="caseClose" aria-label="Close" data-i18n-aria="case.close">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <div class="case__content" id="caseContent"></div>
+  </dialog>
+
   <!-- ============ FOOTER ============ -->
   <footer class="footer" id="contact">
     <div class="footer__mark" id="footerMark" aria-hidden="true"><span class="fm fm--v">V</span><span class="fm fm--a">A</span><span class="fm fm--n">N</span><span class="fm fm--t"><span class="fm-t__stem">T</span><span class="fm-t__bar">T</span></span><span class="fm fm--u">U</span><span class="fm fm--m">M</span><span class="fm fm--dot">.</span></div>
 
     <div class="container footer__grid">
       <div class="footer__col">
-        <h4>Contact Us</h4>
-        <a href="tel:+40000000000">+40 000 000 000</a>
-        <a href="mailto:hello@example.com">hello@example.com</a>
-        <span>Bucharest, Romania</span>
+        <h4 data-i18n="footer.contact">Contact Us</h4>
+        <a href="tel:+40725740498">0725 740 498</a>
+        <a href="mailto:contact@vantumit.ro">contact@vantumit.ro</a>
+        <span data-i18n="footer.city">Bucharest, Romania</span>
       </div>
 
       <div class="footer__col">
-        <h4>Newsletter</h4>
-        <span>Subscribe to get our latest updates and insights.</span>
-        <a href="#contact" class="btn btn--dark">Subscribe to Newsletter</a>
+        <h4 data-i18n="footer.newsletter">Newsletter</h4>
+        <span data-i18n="footer.newsletterText">Subscribe to get our latest updates and insights.</span>
+        <a href="#contact" class="btn btn--dark" data-i18n="footer.subscribe">Subscribe to Newsletter</a>
       </div>
 
       <div class="footer__col">
-        <h4>Legal</h4>
-        <span>VANTUM SRL</span>
-        <span>All rights reserved - Vantum ·<span id="year">2026</span></span>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms and Conditions</a>
+        <h4 data-i18n="footer.legal">Legal</h4>
+        <span><span data-i18n="footer.rights">All rights reserved</span> - Vantum · <span id="year">2026</span></span>
+        <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="#" data-i18n="footer.terms">Terms and Conditions</a>
       </div>
 
       <div class="footer__col">
-        <h4>Follow Us</h4>
+        <h4 data-i18n="footer.follow">Follow Us</h4>
         <div class="socials">
           <a href="#" aria-label="Instagram">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -209,6 +209,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
   <script src="blob.js"></script>
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,14 +1,129 @@
 // ============ DATA ============
-// Edit this list to change the case studies shown in the carousel.
-const projects = [
-  { name: 'Learnly', hue: 185, tags: ['Digital Monetization', 'Performance Optimization', 'News Platform'] },
-  { name: 'Institut Français', hue: 200, tags: ['Multisite Platform', 'Web Development', 'Custom CMS'] },
-  { name: 'Alpha', hue: 265, tags: ['E-commerce', 'UX / UI'] },
-  { name: 'Solaria', hue: 40, tags: ['Web App', 'Dashboard'] },
-  { name: 'North Logistics', hue: 140, tags: ['Consulting', 'Automation'] },
-  { name: 'Top Metrology', hue: 20, tags: ['Web Development', 'Search Redesign'] },
-  { name: 'Robotic Cleaning Solutions', hue: 190, tags: ['Web Development', 'Lead Automation'] },
-];
+// Card colours for the case studies. Their texts live in i18n.js (`cases`), in the same order.
+const CASE_HUES = [150, 320, 30, 195, 260, 120, 220];
+
+// ============ LANGUAGE ============
+const LANG_KEY = 'vantum-lang';
+let lang = 'en';
+let t = I18N.en;
+
+const store = {
+  get(key, where = localStorage) { try { return where.getItem(key); } catch { return null; } },
+  set(key, value, where = localStorage) { try { where.setItem(key, value); } catch { /* storage blocked */ } },
+};
+
+const escapeHtml = (str) => str.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function applyLanguage(code) {
+  lang = I18N[code] ? code : 'en';
+  t = I18N[lang];
+  document.documentElement.lang = lang;
+  document.getElementById('metaDesc').content = t['meta.desc'];
+
+  document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t[el.dataset.i18n]; });
+  document.querySelectorAll('[data-i18n-html]').forEach((el) => { el.innerHTML = t[el.dataset.i18nHtml]; });
+  document.querySelectorAll('[data-i18n-aria]').forEach((el) => el.setAttribute('aria-label', t[el.dataset.i18nAria]));
+
+  document.getElementById('langCurrent').textContent = lang.toUpperCase();
+  langMenu.querySelectorAll('[role="option"]').forEach((li) => li.setAttribute('aria-selected', String(li.dataset.lang === lang)));
+
+  renderCards();
+  if (caseModal.open) openCase(openCaseIndex);
+}
+
+// a saved choice wins; otherwise guess from the browser, then correct it from the visitor's IP country
+async function detectLanguage() {
+  const saved = store.get(LANG_KEY);
+  if (saved && I18N[saved]) return applyLanguage(saved);
+
+  const browser = (navigator.languages || [navigator.language || 'en']).map((l) => l.slice(0, 2).toLowerCase()).find((l) => I18N[l]);
+  applyLanguage(browser || 'en');
+
+  const country = await getCountry();
+  if (country && !store.get(LANG_KEY)) applyLanguage(COUNTRY_LANG[country] || 'en');
+}
+
+async function getCountry() {
+  const cached = store.get('vantum-country', sessionStorage);
+  if (cached) return cached;
+  const sources = ['https://ipapi.co/country/', 'https://get.geojs.io/v1/ip/country'];
+  for (const url of sources) {
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+      const code = (await res.text()).trim().toUpperCase();
+      if (res.ok && /^[A-Z]{2}$/.test(code)) {
+        store.set('vantum-country', code, sessionStorage);
+        return code;
+      }
+    } catch { /* try the next source */ }
+  }
+  return null;
+}
+
+// --- language picker ---
+const langBtn = document.getElementById('langBtn');
+const langMenu = document.getElementById('langMenu');
+
+langMenu.innerHTML = Object.entries(LANGS).map(([code, name]) =>
+  `<li role="option" tabindex="-1" data-lang="${code}"><b>${code.toUpperCase()}</b>${name}</li>`).join('');
+
+const setLangMenu = (open) => {
+  langMenu.hidden = !open;
+  langBtn.setAttribute('aria-expanded', String(open));
+  if (open) (langMenu.querySelector('[aria-selected="true"]') || langMenu.firstElementChild).focus();
+};
+const pickLang = (li) => {
+  store.set(LANG_KEY, li.dataset.lang);
+  applyLanguage(li.dataset.lang);
+  setLangMenu(false);
+  langBtn.focus();
+};
+
+langBtn.addEventListener('click', () => setLangMenu(langMenu.hidden));
+langMenu.addEventListener('click', (e) => { const li = e.target.closest('[data-lang]'); if (li) pickLang(li); });
+langMenu.addEventListener('keydown', (e) => {
+  const items = [...langMenu.children];
+  const i = items.indexOf(document.activeElement);
+  if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (items[i]) pickLang(items[i]); }
+  if (e.key === 'Escape' || e.key === 'Tab') { setLangMenu(false); if (e.key === 'Escape') langBtn.focus(); }
+});
+document.addEventListener('click', (e) => { if (!e.target.closest('#lang')) setLangMenu(false); });
+
+// ============ CASE STUDY MODAL ============
+const caseModal = document.getElementById('caseModal');
+const caseContent = document.getElementById('caseContent');
+let openCaseIndex = 0;
+
+function openCase(i) {
+  openCaseIndex = i;
+  const c = t.cases[i];
+  caseContent.innerHTML = `
+    <div class="case__hero card__thumb" style="--h:${CASE_HUES[i]}">
+      <div class="card__tiles">${'<i></i>'.repeat(12)}</div>
+    </div>
+    <div class="case__body">
+      <p class="case__sector">${escapeHtml(c.sector)}</p>
+      <h2 class="case__title" id="caseTitle">${escapeHtml(c.title)}</h2>
+      <div class="card__tags">${c.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div>
+      <h3>${t['case.challenge']}</h3>
+      <p>${escapeHtml(c.challenge)}</p>
+      <h3>${t['case.solution']}</h3>
+      <p>${escapeHtml(c.solution)}</p>
+      <h3>${t['case.results']}</h3>
+      <ul class="case__results">${c.results.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul>
+      <a href="#contact" class="btn btn--primary" id="caseCta">${t['case.cta']}</a>
+    </div>`;
+  if (!caseModal.open) caseModal.showModal();
+}
+
+document.getElementById('caseClose').addEventListener('click', () => caseModal.close());
+// clicking the dark backdrop (the dialog itself, outside its content) closes it
+caseModal.addEventListener('click', (e) => {
+  if (e.target === caseModal) caseModal.close();
+  if (e.target.closest('#caseCta')) caseModal.close();
+});
 
 // ============ HEADER ============
 const header = document.getElementById('header');
@@ -36,21 +151,25 @@ let active = 0;
 const DESKTOP = { rotate: 15, depth: 10, offset: 90, scale: 0.82, visible: 7, xPow: 0.7, rPow: 0.3 };
 const TABLET = { rotate: 25, depth: 8, offset: 85, scale: 0.8, visible: 1, xPow: 1, rPow: 1 };
 
-stage.innerHTML = projects.map((p, i) => `
-  <article class="card" data-index="${i}" style="--h:${p.hue}" aria-label="${p.name}">
+let cards = [];
+
+function renderCards() {
+  stage.innerHTML = t.cases.map((c, i) => `
+  <article class="card" data-index="${i}" style="--h:${CASE_HUES[i]}" aria-label="${escapeHtml(c.title)}">
     <div class="card__thumb">
-      <span class="card__brand">${p.name}</span>
+      <span class="card__brand">${escapeHtml(c.sector)}</span>
       <div class="card__tiles">${'<i></i>'.repeat(12)}</div>
     </div>
     <div class="card__body">
-      <h3 class="card__title">${p.name}</h3>
-      <div class="card__tags">${p.tags.map((t) => `<span>${t}</span>`).join('')}</div>
-      <p class="card__desc">A showcase of our successful collaboration with ${p.name}. Explore the challenges, solutions, and results.</p>
-      <a class="card__btn" href="#work">Check Study Case</a>
+      <h3 class="card__title">${escapeHtml(c.title)}</h3>
+      <div class="card__tags">${c.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div>
+      <p class="card__desc">${escapeHtml(c.desc)}</p>
+      <button class="card__btn" type="button">${t['work.view']}</button>
     </div>
   </article>`).join('');
-
-const cards = [...stage.children];
+  cards = [...stage.children];
+  layout();
+}
 
 function layout() {
   const n = cards.length;
@@ -80,7 +199,7 @@ function layout() {
     card.style.pointerEvents = hidden ? 'none' : 'auto';
     card.classList.toggle('is-active', d === 0);
     card.setAttribute('aria-hidden', String(d !== 0));
-    card.querySelector('.card__btn').tabIndex = d === 0 ? 0 : -1;
+    card.querySelector('.card__btn').tabIndex = d === 0 || window.innerWidth < 768 ? 0 : -1;
   });
 }
 
@@ -97,7 +216,11 @@ stage.addEventListener('click', (e) => {
   if (!card) return;
   // a drag already moved the carousel, so ignore the click that ends it
   if (dragged) { dragged = false; e.preventDefault(); return; }
-  if (card.classList.contains('is-active')) return;
+  if (card.classList.contains('is-active') || window.innerWidth < 768) {
+    // phones show the cards as a plain list, so every card's button works there
+    if (e.target.closest('.card__btn')) openCase(Number(card.dataset.index));
+    return;
+  }
   e.preventDefault();
   go(Number(card.dataset.index));
 });
@@ -120,7 +243,7 @@ stage.addEventListener('pointerup', (e) => {
 stage.addEventListener('dragstart', (e) => e.preventDefault());
 
 window.addEventListener('resize', layout);
-layout();
+detectLanguage();
 
 // ============ WORK DOTS ============
 // Dots drift around the section; the ones near the cursor get linked by lines.
@@ -214,17 +337,20 @@ new IntersectionObserver(([entry]) => {
 
 // ============ REVEAL + COUNTERS ============
 
+// data-final swaps the last number for a symbol, e.g. counting up and landing on ∞
 function countUp(el) {
   const target = Number(el.dataset.count);
+  const prefix = el.dataset.prefix || '';
   const suffix = el.dataset.suffix || '';
-  if (reduceMotion) { el.textContent = target + suffix; return; }
+  const final = el.dataset.final || prefix + target + suffix;
+  if (reduceMotion) { el.textContent = final; return; }
 
   const duration = 1600;
   const start = performance.now();
   const tick = (now) => {
     const t = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - t, 3);
-    el.textContent = Math.round(target * eased) + suffix;
+    el.textContent = t < 1 ? prefix + Math.round(target * eased) + suffix : final;
     if (t < 1) requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);

@@ -146,13 +146,45 @@ section { position: relative; }
 
 .header__actions { display: flex; align-items: center; gap: 24px; }
 
-.lang {
+.lang { position: relative; }
+.lang__btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  padding: 8px 4px;
   font-size: 14px;
   font-weight: 600;
 }
+.lang__btn svg { transition: transform .2s ease; }
+.lang__btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.lang__menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 170px;
+  padding: 6px;
+  background: rgba(31, 31, 31, .97);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(166, 255, 0, .25);
+  border-radius: 10px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .45);
+  z-index: 10;
+}
+.lang__menu li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+.lang__menu li b { width: 22px; font-size: 12px; color: var(--muted); }
+.lang__menu li:hover,
+.lang__menu li:focus-visible { background: rgba(166, 255, 0, .1); }
+.lang__menu li[aria-selected="true"] { color: var(--lime); }
+.lang__menu li[aria-selected="true"] b { color: var(--lime); }
 
 .burger { display: none; width: 40px; height: 40px; position: relative; }
 .burger span {
@@ -182,7 +214,9 @@ section { position: relative; }
   z-index: 1;
   pointer-events: none;
 }
-.hero.has-webgl .blob { display: none; }
+/* hidden until blob.js reports that WebGL is unavailable, so they never flash in before the canvas */
+.blob { visibility: hidden; }
+.hero.no-webgl .blob { visibility: visible; }
 
 .hero__inner {
   position: relative;
@@ -194,7 +228,7 @@ section { position: relative; }
 .hero__title {
   position: relative;
   z-index: 2;
-  font-size: clamp(52px, 9.3vw, 184px);
+  font-size: clamp(38px, 9.3vw, 184px);
   font-weight: 800;
   line-height: .98;
   letter-spacing: -.02em;
@@ -271,45 +305,17 @@ section { position: relative; }
 }
 
 /* ============ CLIENTS ============ */
-.clients { padding: 30px 0 70px; text-align: center; }
+.clients { padding: 50px 0 70px; text-align: center; }
 
-.clients__label { font-size: 20px; font-weight: 600; }
-
-.clients__row {
-  max-width: none;
-  margin: 56px calc(50% - 50vw + 24px) 64px;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
-}
-
-.client {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.05;
-  white-space: nowrap;
-  opacity: .92;
-  transition: opacity .2s ease, transform .2s ease;
-}
-.client:hover { opacity: 1; transform: translateY(-2px); }
-.client--serif { font-family: Georgia, serif; font-size: 15px; letter-spacing: .08em; text-align: left; }
-.client--light { font-weight: 400; font-size: 26px; }
-.client--small { font-size: 14px; font-weight: 600; }
-.client--bold { font-weight: 800; font-size: 26px; }
-.client--xl { font-weight: 900; font-size: 40px; letter-spacing: -.03em; }
-.client--condensed { font-weight: 600; letter-spacing: .06em; font-stretch: condensed; }
-.client--wide { font-weight: 900; font-size: 17px; letter-spacing: .12em; }
-.client sup { font-size: .45em; }
-
-.clients__text {
-  max-width: 800px;
+.clients__headline {
+  max-width: 900px;
   margin: 0 auto;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.01em;
 }
+
 
 /* ============ WORK / CAROUSEL ============ */
 .work { padding: 30px 0 64px; overflow: hidden; }
@@ -399,8 +405,11 @@ section { position: relative; }
   position: absolute;
   top: 9%;
   left: 7%;
+  max-width: 40%;
   font-size: 30px;
   font-weight: 800;
+  line-height: 1.15;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .6);
   z-index: 2;
 }
 .card__tiles {
@@ -466,6 +475,7 @@ section { position: relative; }
 }
 .card__btn {
   display: block;
+  width: 100%;
   margin-top: auto;
   padding: 16px 28px;
   border-radius: 8px;
@@ -548,6 +558,61 @@ section { position: relative; }
   .card__title { font-size: 22px; }
   .card__tags span { padding: 3px 10px; font-size: 12px; }
 }
+/* ============ CASE STUDY MODAL ============ */
+.case {
+  width: min(760px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  padding: 0;
+  overflow-y: auto;
+  background: #1e1e1e;
+  color: var(--text);
+  border: 1px solid rgba(166, 255, 0, .3);
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .6);
+}
+.case::backdrop { background: rgba(0, 0, 0, .7); backdrop-filter: blur(6px); }
+.case[open] { animation: case-in .35s ease-out; }
+@keyframes case-in { from { opacity: 0; transform: translateY(24px) scale(.98); } }
+.case__close {
+  position: sticky;
+  top: 12px;
+  float: right;
+  margin: 12px 12px -56px 0;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(22, 22, 22, .8);
+  z-index: 3;
+  transition: background .2s ease, color .2s ease;
+}
+.case__close:hover { background: var(--lime); color: #0c1a00; }
+.case__hero { height: 220px; }
+.case__body { padding: 28px clamp(20px, 5vw, 44px) 40px; text-align: left; }
+.case__sector { color: var(--lime); font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.case__title { margin: 4px 0 16px; font-size: clamp(26px, 3vw, 36px); font-weight: 800; line-height: 1.15; }
+.case__body h3 { margin: 28px 0 8px; font-size: 18px; font-weight: 700; }
+.case__body p { color: rgba(255, 255, 255, .82); }
+.case__results { display: grid; gap: 10px; }
+.case__results li {
+  position: relative;
+  padding-left: 30px;
+  color: rgba(255, 255, 255, .88);
+}
+.case__results li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .35em;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--grad);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M9 0a9 9 0 1 1 0 18A9 9 0 0 1 9 0Zm4 5.6-5.2 5.3L5 8.2 3.8 9.4l4 4 6.4-6.6L13 5.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.case .btn { margin-top: 32px; }
+
 /* ============ PROCESS ============ */
 .process {
   padding: 150px 0 120px;
@@ -690,7 +755,8 @@ section { position: relative; }
   top: 140px;
   left: 50%;
   transform: translateX(-50%) rotate(-4deg);
-  font-size: clamp(90px, 19vw, 370px);
+  /* the tilted word is ~5.4em wide, so 17vw keeps it whole on every screen */
+  font-size: min(17vw, 370px);
   font-weight: 900;
   letter-spacing: .08em;
   line-height: 1;
@@ -709,9 +775,11 @@ section { position: relative; }
    Intro uses `translate`/`rotate`/`scale`, the loop uses `transform`, so they never fight. */
 .fm { display: inline-block; transform-origin: 50% 100%; }
 .fm--t { position: relative; }
-/* the T is two copies of the glyph: one clipped to the stem, one to the crossbar (bar ends at ~31% of the em box) */
-.fm-t__stem { display: inline-block; clip-path: inset(31% 0 0 0); transform-origin: 50% 86%; }
-.fm-t__bar { position: absolute; top: 0; left: 0; clip-path: inset(0 0 69.1% 0); transform-origin: 50% 23%; }
+/* the T is two copies of the glyph: one clipped to the stem, one to the crossbar.
+   The crossbar ends at ~30.9% of the em box; the split sits a little lower so no anti-aliased
+   sliver of it stays on the stem when the bar flies off. The halves overlap slightly to avoid a seam. */
+.fm-t__stem { display: inline-block; clip-path: inset(32.4% 0 0 0); transform-origin: 50% 86%; }
+.fm-t__bar { position: absolute; top: 0; left: 0; clip-path: inset(0 0 67.4% 0); transform-origin: 50% 23%; }
 
 .footer__mark.is-waiting .fm,
 .footer__mark.is-waiting .fm-t__bar { opacity: 0; }
@@ -836,7 +904,6 @@ section { position: relative; }
 @media (max-width: 1100px) {
   .header__inner { padding: 0 24px; }
   .nav { gap: 22px; }
-  .lang { display: none; }
 }
 
 @media (max-width: 900px) {
@@ -862,7 +929,6 @@ section { position: relative; }
   .hero { padding: 130px 0 70px; }
   .blob--big { top: -60px; opacity: .85; }
 
-  .clients__row { justify-content: center; gap: 28px 40px; margin: 40px 0 48px; padding: 0; }
 
   .process { padding: 100px 0 80px; }
   .process__inner { grid-template-columns: 1fr; gap: 60px; }
@@ -875,6 +941,7 @@ section { position: relative; }
 }
 
 @media (max-width: 560px) {
+  .header__actions { gap: 8px; }
   .header__actions .btn { display: none; }
   .logo { font-size: 24px; }
 

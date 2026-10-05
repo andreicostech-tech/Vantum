@@ -11,7 +11,10 @@
 // If three.js or WebGL is unavailable, the CSS blobs in styles.css stay visible.
 (function () {
   const hero = document.getElementById('home');
-  if (!hero || typeof THREE === 'undefined') return;
+  if (!hero) return;
+  // no three.js or no WebGL: show the CSS blobs instead
+  const fallback = () => hero.classList.add('no-webgl');
+  if (typeof THREE === 'undefined') return fallback();
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -28,8 +31,27 @@
   const COLOR_SPEED = 2;        // how fast the colour flows
   const COLOR_SCALE = 2;        // lower = larger patches of colour
 
+  // Touch screens have no cursor to follow, so there the 15 spheres become three
+  // satellites with short liquid tails, circling the large sphere on tilted ellipses.
+  // Where an orbit passes close they melt into it, then tear away again. A tap pushes
+  // them away from the finger and they drift back. Scrolling and the menu never move them.
+  const touchMode = !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const SAT_SPHERES = TRAIL_LENGTH / 3;  // head + tail of each satellite
+  const SATELLITES = [
+    // size: head radius; a/b: orbit half-axes; tilt: orbit rotation; speed: rad/s (negative = other way)
+    { size: 0.2, a: 1.35, b: 0.72, tilt: 0.3, speed: 0.5, phase: 0 },
+    { size: 0.15, a: 1.25, b: 0.78, tilt: -0.35, speed: -0.38, phase: 2.1 },
+    { size: 0.11, a: 1.4, b: 0.7, tilt: 0.6, speed: 0.65, phase: 4.2 },
+  ];
+  const SCATTER = 0.9;          // how far a tap pushes the satellites (units)
+  const SCATTER_FADE = 2.2;     // how quickly they return to their orbits
+
   // Where things sit, measured from the centre of the hero (x right, y up).
   const layout = (w, h) => {
+    if (touchMode) {
+      const unit = Math.min(w * 0.24, h * 0.3);
+      return { unit, big: [w * 0.14, -h * 0.06], rest: [0, 0] };
+    }
     if (w < 900) {
       const unit = w * 0.36;
       return { unit, big: [w * 0.3, h * 0.2], rest: [-w * 0.14, h * 0.02] };
@@ -43,7 +65,7 @@
   try {
     renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
   } catch (err) {
-    return;
+    return fallback();
   }
   // ray-marching cost grows with pixel count, so the resolution is capped
   const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -52,7 +74,6 @@
   canvas.className = 'hero__canvas';
   canvas.setAttribute('aria-hidden', 'true');
   hero.prepend(canvas);
-  hero.classList.add('has-webgl');
 
   // ---------- shaders ----------
   // All lengths are CSS pixels; the origin is the centre of the hero, y points up.
@@ -72,6 +93,7 @@
     uniform float uUnit;         // px per unit
     uniform vec2 uBig;           // centre of the sphere that stays put
     uniform vec2 uTrail[TRAIL];  // the chain behind the cursor, head first
+    uniform float uRadius[TRAIL]; // radius of each of those spheres, in units
 
     // value noise: random values on a grid, smoothly blended in between
     float hash(vec3 p){
@@ -96,7 +118,7 @@
       float k = ${STICKINESS.toFixed(3)} / uUnit;
       float sum = exp(-k * (length(p - vec3(uBig, 0.0)) - ${BIG_RADIUS.toFixed(4)} * uUnit));
       for (int i = 0; i < TRAIL; i++) {
-        float radius = (${HEAD_RADIUS.toFixed(4)} - ${TAPER.toFixed(4)} * float(i)) * uUnit;
+        float radius = uRadius[i] * uUnit;
         sum += exp(-k * (length(p - vec3(uTrail[i], 0.0)) - radius));
       }
       return -log(max(sum, 1e-30)) / k;
@@ -147,6 +169,12 @@
   // ---------- scene: one full-screen quad ----------
   const trail = [];
   for (let i = 0; i < TRAIL_LENGTH; i++) trail.push(new THREE.Vector2());
+  // desktop: one chain from large to tiny; touch: each satellite tapers on its own
+  const radii = trail.map((_, i) => {
+    if (!touchMode) return HEAD_RADIUS - TAPER * i;
+    const sat = SATELLITES[Math.floor(i / SAT_SPHERES)];
+    return sat.size * (1 - 0.16 * (i % SAT_SPHERES));
+  });
 
   const uniforms = {
     uSize: { value: new THREE.Vector2(1, 1) },
@@ -155,6 +183,7 @@
     uUnit: { value: 100 },
     uBig: { value: new THREE.Vector2() },
     uTrail: { value: trail },
+    uRadius: { value: radii },
   };
   const scene = new THREE.Scene();
   const camera = new THREE.Camera();
@@ -182,7 +211,8 @@
     uniforms.uBig.value.set(l.big[0], l.big[1]);
     rest.set(l.rest[0], l.rest[1]);
     if (!placed) {
-      trail.forEach((p) => p.copy(rest));
+      if (touchMode) SATELLITES.forEach((sat, s) => trail.slice(s * SAT_SPHERES, (s + 1) * SAT_SPHERES).forEach((p) => p.copy(orbit(sat, s))));
+      else trail.forEach((p) => p.copy(rest));
       placed = true;
     }
   }
@@ -200,6 +230,36 @@
     pointerActive = true;
   }
 
+  // ---------- touch: satellites ----------
+  let clock = 0;
+  const scatter = SATELLITES.map(() => new THREE.Vector2());
+  const orbitPos = SATELLITES.map(() => new THREE.Vector2());
+
+  // where satellite s is on its tilted ellipse right now
+  function orbit(sat, s) {
+    const big = uniforms.uBig.value;
+    const unit = uniforms.uUnit.value;
+    const angle = sat.phase + clock * sat.speed;
+    const x = Math.cos(angle) * sat.a * unit;
+    const y = Math.sin(angle) * sat.b * unit;
+    const c = Math.cos(sat.tilt);
+    const n = Math.sin(sat.tilt);
+    return orbitPos[s].set(big.x + x * c - y * n, big.y + x * n + y * c);
+  }
+
+  // `click` only fires for a real tap, never at the end of a scroll or swipe
+  function onTap(e) {
+    if (document.getElementById('nav')?.classList.contains('is-open')) return;
+    onPointerMove(e);
+    const unit = uniforms.uUnit.value;
+    SATELLITES.forEach((_, s) => {
+      const away = trail[s * SAT_SPHERES].clone().sub(pointer);
+      // the closer the finger, the harder the push
+      const push = SCATTER * unit * Math.max(0.4, 1 - away.length() / (3 * unit));
+      scatter[s].add(away.normalize().multiplyScalar(push));
+    });
+  }
+
   // ---------- frame ----------
   let last = performance.now();
   let raf = 0;
@@ -207,11 +267,25 @@
   function update(dt) {
     const k = dt * 60; // 1 at 60fps
     uniforms.uTime.value += dt * COLOR_SPEED;
+    clock += dt;
+
+    const head = 1 - Math.pow(1 - HEAD_FOLLOW, k);
+    const link = 1 - Math.pow(1 - TAIL_FOLLOW, k);
+
+    if (touchMode) {
+      // each satellite's head chases its orbit (plus any push from a tap), its tail chases the head
+      const fade = Math.exp(-SCATTER_FADE * dt);
+      SATELLITES.forEach((sat, s) => {
+        const first = s * SAT_SPHERES;
+        scatter[s].multiplyScalar(fade);
+        trail[first].lerp(orbit(sat, s).add(scatter[s]), head);
+        for (let i = first + SAT_SPHERES - 1; i > first; i--) trail[i].lerp(trail[i - 1], link);
+      });
+      return;
+    }
 
     // the head goes after the cursor, every other sphere after the one before it
-    const goal = pointerActive ? pointer : rest;
-    trail[0].lerp(goal, 1 - Math.pow(1 - HEAD_FOLLOW, k));
-    const link = 1 - Math.pow(1 - TAIL_FOLLOW, k);
+    trail[0].lerp(pointerActive ? pointer : rest, head);
     for (let i = TRAIL_LENGTH - 1; i > 0; i--) trail[i].lerp(trail[i - 1], link);
   }
 
@@ -243,9 +317,13 @@
   });
 
   if (!reduceMotion) {
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
-    // cursor left the page: let the drop float back to its waiting place
-    document.documentElement.addEventListener('pointerleave', () => { pointerActive = false; });
+    if (touchMode) {
+      hero.addEventListener('click', onTap);
+    } else {
+      window.addEventListener('pointermove', onPointerMove, { passive: true });
+      // cursor left the page: let the drop float back to its waiting place
+      document.documentElement.addEventListener('pointerleave', () => { pointerActive = false; });
+    }
     // only animate while the hero is on screen
     new IntersectionObserver(([entry]) => (entry.isIntersecting ? start() : stop())).observe(hero);
   }
