@@ -87,7 +87,7 @@ const I18N = {
     'form.message': "What do you need?",
     'form.messagePh': "A few words about your business, your goals and what you would like us to build.",
     'form.choose': "Choose…",
-    'form.consent': "I agree that Vantum may use these details to contact me about my request, as described in the <a href=\"#\">Privacy Policy</a>.",
+    'form.consent': "I agree that Vantum may use these details to contact me about my request, as described in the <a href=\"confidentialitate.html\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a>.",
     'form.submit': "Send request",
     'form.sending': "Sending…",
     'form.doneTitle': "Thank you!",
@@ -102,6 +102,8 @@ const I18N = {
     'footer.privacy': 'Privacy Policy',
     'footer.terms': 'Terms and Conditions',
     'footer.follow': 'Follow Us',
+    'wa.label': "Write to us on WhatsApp",
+    'wa.text': "Hi! I'd like to know more about your services.",
     cases: [
       {
         title: 'Online Store',
@@ -235,7 +237,7 @@ const I18N = {
     'form.message': "Descrierea cerinței",
     'form.messagePh': "Câteva cuvinte despre afacerea ta, obiectivele tale și ce ai vrea să construim.",
     'form.choose': "Alege…",
-    'form.consent': "Sunt de acord ca Vantum să folosească aceste date pentru a mă contacta în legătură cu cererea mea, conform <a href=\"#\">Politicii de confidențialitate</a>.",
+    'form.consent': "Sunt de acord ca Vantum să folosească aceste date pentru a mă contacta în legătură cu cererea mea, conform <a href=\"confidentialitate.html\" target=\"_blank\" rel=\"noopener\">Politicii de confidențialitate</a>.",
     'form.submit': "Trimite cererea",
     'form.sending': "Se trimite…",
     'form.doneTitle': "Mulțumim!",
@@ -250,6 +252,8 @@ const I18N = {
     'footer.privacy': 'Politica de confidențialitate',
     'footer.terms': 'Termeni și condiții',
     'footer.follow': 'Urmărește-ne',
+    'wa.label': "Scrie-ne pe WhatsApp",
+    'wa.text': "Bună! Aș vrea mai multe detalii despre serviciile voastre.",
     cases: [
       {
         title: 'Magazin online',
@@ -383,7 +387,7 @@ const I18N = {
     'form.message': "Was brauchen Sie?",
     'form.messagePh': "Ein paar Worte zu Ihrem Unternehmen, Ihren Zielen und dem, was wir für Sie bauen sollen.",
     'form.choose': "Bitte wählen…",
-    'form.consent': "Ich bin einverstanden, dass Vantum diese Daten nutzt, um mich zu meiner Anfrage zu kontaktieren, wie in der <a href=\"#\">Datenschutzerklärung</a> beschrieben.",
+    'form.consent': "Ich bin einverstanden, dass Vantum diese Daten nutzt, um mich zu meiner Anfrage zu kontaktieren, wie in der <a href=\"confidentialitate.html\" target=\"_blank\" rel=\"noopener\">Datenschutzerklärung</a> beschrieben.",
     'form.submit': "Anfrage senden",
     'form.sending': "Wird gesendet…",
     'form.doneTitle': "Vielen Dank!",
@@ -398,6 +402,8 @@ const I18N = {
     'footer.privacy': 'Datenschutz',
     'footer.terms': 'AGB',
     'footer.follow': 'Folgen Sie uns',
+    'wa.label': "Schreiben Sie uns auf WhatsApp",
+    'wa.text': "Hallo! Ich hätte gerne mehr Informationen zu Ihren Leistungen.",
     cases: [
       {
         title: 'Onlineshop',
@@ -531,7 +537,7 @@ const I18N = {
     'form.message': "De quoi avez-vous besoin ?",
     'form.messagePh': "Quelques mots sur votre activité, vos objectifs et ce que vous aimeriez que nous construisions.",
     'form.choose': "Choisir…",
-    'form.consent': "J'accepte que Vantum utilise ces données pour me contacter au sujet de ma demande, conformément à la <a href=\"#\">Politique de confidentialité</a>.",
+    'form.consent': "J'accepte que Vantum utilise ces données pour me contacter au sujet de ma demande, conformément à la <a href=\"confidentialitate.html\" target=\"_blank\" rel=\"noopener\">Politique de confidentialité</a>.",
     'form.submit': "Envoyer la demande",
     'form.sending': "Envoi…",
     'form.doneTitle': "Merci !",
@@ -546,6 +552,8 @@ const I18N = {
     'footer.privacy': 'Politique de confidentialité',
     'footer.terms': 'Conditions générales',
     'footer.follow': 'Suivez-nous',
+    'wa.label': "Écrivez-nous sur WhatsApp",
+    'wa.text': "Bonjour ! J'aimerais en savoir plus sur vos services.",
     cases: [
       {
         title: 'Boutique en ligne',
@@ -679,7 +687,7 @@ const I18N = {
     'form.message': "¿Qué necesitas?",
     'form.messagePh': "Unas palabras sobre tu negocio, tus objetivos y lo que te gustaría que construyéramos.",
     'form.choose': "Elegir…",
-    'form.consent': "Acepto que Vantum use estos datos para contactarme sobre mi solicitud, según la <a href=\"#\">Política de privacidad</a>.",
+    'form.consent': "Acepto que Vantum use estos datos para contactarme sobre mi solicitud, según la <a href=\"confidentialitate.html\" target=\"_blank\" rel=\"noopener\">Política de privacidad</a>.",
     'form.submit': "Enviar solicitud",
     'form.sending': "Enviando…",
     'form.doneTitle': "¡Gracias!",
@@ -694,6 +702,8 @@ const I18N = {
     'footer.privacy': 'Política de privacidad',
     'footer.terms': 'Términos y condiciones',
     'footer.follow': 'Síguenos',
+    'wa.label': "Escríbenos por WhatsApp",
+    'wa.text': "¡Hola! Me gustaría saber más sobre vuestros servicios.",
     cases: [
       {
         title: 'Tienda online',
@@ -827,7 +837,7 @@ const I18N = {
     'form.message': "Di cosa hai bisogno?",
     'form.messagePh': "Qualche parola sulla tua attività, sui tuoi obiettivi e su cosa vorresti realizzare con noi.",
     'form.choose': "Scegli…",
-    'form.consent': "Acconsento che Vantum utilizzi questi dati per contattarmi in merito alla mia richiesta, come descritto nella <a href=\"#\">Privacy Policy</a>.",
+    'form.consent': "Acconsento che Vantum utilizzi questi dati per contattarmi in merito alla mia richiesta, come descritto nella <a href=\"confidentialitate.html\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a>.",
     'form.submit': "Invia richiesta",
     'form.sending': "Invio in corso…",
     'form.doneTitle': "Grazie!",
@@ -842,6 +852,8 @@ const I18N = {
     'footer.privacy': 'Privacy Policy',
     'footer.terms': 'Termini e condizioni',
     'footer.follow': 'Seguici',
+    'wa.label': "Scrivici su WhatsApp",
+    'wa.text': "Ciao! Vorrei saperne di più sui vostri servizi.",
     cases: [
       {
         title: 'Negozio online',

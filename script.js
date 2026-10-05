@@ -26,6 +26,7 @@ function applyLanguage(code) {
   document.querySelectorAll('[data-i18n-html]').forEach((el) => { el.innerHTML = t[el.dataset.i18nHtml]; });
   document.querySelectorAll('[data-i18n-aria]').forEach((el) => el.setAttribute('aria-label', t[el.dataset.i18nAria]));
   document.querySelectorAll('[data-i18n-ph]').forEach((el) => { el.placeholder = t[el.dataset.i18nPh]; });
+  document.getElementById('waBtn').href = `https://wa.me/40725740498?text=${encodeURIComponent(t['wa.text'])}`;
 
   document.getElementById('langCurrent').textContent = lang.toUpperCase();
   langMenu.querySelectorAll('[role="option"]').forEach((li) => li.setAttribute('aria-selected', String(li.dataset.lang === lang)));
