@@ -845,37 +845,6 @@ section { position: relative; }
 }
 .cta p { margin: 18px 0 30px; font-size: 16px; }
 
-/* ============ FEEDBACK ============ */
-.feedback { padding: 60px 0 140px; }
-
-.testimonial {
-  max-width: 800px;
-  margin: 70px auto 0;
-  padding: 40px clamp(24px, 6vw, 90px) 80px;
-  background: var(--bg-card-2);
-  border-radius: 8px;
-  text-align: center;
-}
-.testimonial__avatar {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 28px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--grad);
-  color: #0c1a00;
-  font-size: 30px;
-  font-weight: 800;
-}
-.testimonial figcaption { font-size: 17px; font-weight: 700; margin-bottom: 28px; }
-.testimonial blockquote {
-  font-size: 15px;
-  font-style: italic;
-  line-height: 1.85;
-  color: #e3e3e3;
-}
-
 /* ============ FOOTER ============ */
 .footer {
   position: relative;
