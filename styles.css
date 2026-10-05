@@ -261,7 +261,7 @@ section { position: relative; }
 .burger[aria-expanded="true"] span:nth-child(3) { top: 19px; transform: rotate(-45deg); }
 
 /* ============ HERO ============ */
-.hero { padding: 150px 0 120px; }
+.hero { padding: 150px 0 120px; overflow-x: clip; }
 
 /* three.js canvas (blob.js); the CSS blobs below are the fallback */
 .hero__canvas {
@@ -274,8 +274,8 @@ section { position: relative; }
   pointer-events: none;
 }
 /* hidden until blob.js reports that WebGL is unavailable, so they never flash in before the canvas */
-.blob { visibility: hidden; }
-.hero.no-webgl .blob { visibility: visible; }
+.blob { display: none; }
+.hero.no-webgl .blob { display: block; }
 
 .hero__inner {
   position: relative;
