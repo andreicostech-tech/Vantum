@@ -96,8 +96,9 @@ section { position: relative; }
 }
 
 /* ============ INTRO (touch screens) ============ */
-/* A V is assembled from three pieces (0.45s), lights up like neon, then evaporates to
-   reveal the page (script.js adds .is-lit, then .is-out). Desktop never shows it:
+/* A V is assembled from three pieces (0.45s) on top of the page, lights up like neon, then
+   evaporates (script.js adds .is-lit, then .is-out). It has no backdrop and lets taps through,
+   so the site is visible and usable underneath the whole time. Desktop never shows it:
    there the hero has the liquid animation instead. */
 .intro { display: none; }
 @media not all and (hover: hover) and (pointer: fine) {
@@ -107,7 +108,7 @@ section { position: relative; }
     z-index: 1000;
     display: grid;
     place-items: center;
-    background: var(--bg);
+    pointer-events: none;
     transition: opacity .35s ease .05s, visibility 0s .4s;
     /* safety net if script.js never runs */
     animation: intro-failsafe 0s 4s forwards;
