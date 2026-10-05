@@ -96,7 +96,7 @@ section { position: relative; }
 }
 
 /* ============ INTRO (touch screens) ============ */
-/* A V is assembled from three pieces (0.7s), lights up like neon, then evaporates to
+/* A V is assembled from three pieces (0.45s), lights up like neon, then evaporates to
    reveal the page (script.js adds .is-lit, then .is-out). Desktop never shows it:
    there the hero has the liquid animation instead. */
 .intro { display: none; }
@@ -108,7 +108,7 @@ section { position: relative; }
     display: grid;
     place-items: center;
     background: var(--bg);
-    transition: opacity .5s ease .15s, visibility 0s .65s;
+    transition: opacity .35s ease .05s, visibility 0s .4s;
     /* safety net if script.js never runs */
     animation: intro-failsafe 0s 4s forwards;
   }
@@ -123,11 +123,11 @@ section { position: relative; }
   stroke: rgba(166, 255, 0, .32);
   transform-box: fill-box;
   opacity: 0;
-  animation: .45s cubic-bezier(.2, .9, .3, 1.15) forwards;
+  animation: .3s cubic-bezier(.2, .9, .3, 1.15) forwards;
 }
-.intro__piece--left  { transform-origin: 100% 100%; animation-name: intro-left; animation-delay: .05s; }
-.intro__piece--right { transform-origin: 0 100%; animation-name: intro-right; animation-delay: .15s; }
-.intro__piece--tip   { transform-origin: 50% 0; animation-name: intro-tip; animation-delay: .3s; animation-duration: .4s; }
+.intro__piece--left  { transform-origin: 100% 100%; animation-name: intro-left; animation-delay: 0s; }
+.intro__piece--right { transform-origin: 0 100%; animation-name: intro-right; animation-delay: .06s; }
+.intro__piece--tip   { transform-origin: 50% 0; animation-name: intro-tip; animation-delay: .15s; animation-duration: .28s; }
 @keyframes intro-left  { from { opacity: 0; transform: translate(-70px, -60px) rotate(-35deg); } to { opacity: 1; transform: none; } }
 @keyframes intro-right { from { opacity: 0; transform: translate(70px, -60px) rotate(35deg); } to { opacity: 1; transform: none; } }
 @keyframes intro-tip   { from { opacity: 0; transform: translateY(46px) scale(.2); } to { opacity: 1; transform: none; } }
@@ -135,8 +135,8 @@ section { position: relative; }
 /* the light inside, which flickers on like a neon sign once the V is whole */
 .intro__light { opacity: 0; filter: drop-shadow(0 0 3px #a6ff00) drop-shadow(0 0 14px rgba(29, 255, 106, .85)) drop-shadow(0 0 36px rgba(166, 255, 0, .55)); }
 .intro__light path { stroke: url(#introGrad); }
-.intro.is-lit .intro__light { animation: intro-neon .4s linear forwards; }
-.intro.is-out .intro__mark { animation: intro-evaporate .6s cubic-bezier(.4, 0, .7, .2) forwards; }
+.intro.is-lit .intro__light { animation: intro-neon .25s linear forwards; }
+.intro.is-out .intro__mark { animation: intro-evaporate .4s cubic-bezier(.4, 0, .7, .2) forwards; }
 
 @keyframes intro-neon {
   0%   { opacity: 0; }

@@ -144,21 +144,15 @@ nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false)
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ============ INTRO (touch screens) ============
-// The V assembles itself (CSS, 0.7s), lights up, and evaporates as soon as the page
-// has loaded, but never before the light-up has played and never later than 2.5s.
+// The V assembles itself (CSS, 0.45s), flickers on, and evaporates: about 1.1s in all.
+// It runs on a fixed clock instead of waiting for the page to finish loading.
 const intro = document.getElementById('intro');
 if (getComputedStyle(intro).display === 'none') {
   intro.remove();
 } else {
-  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  const loaded = document.readyState === 'complete'
-    ? Promise.resolve()
-    : new Promise((resolve) => window.addEventListener('load', resolve, { once: true }));
-  wait(720).then(() => intro.classList.add('is-lit'));
-  Promise.all([wait(1150), Promise.race([loaded, wait(2500)])]).then(() => {
-    intro.classList.add('is-out');
-    setTimeout(() => intro.remove(), 800);
-  });
+  setTimeout(() => intro.classList.add('is-lit'), 450);
+  setTimeout(() => intro.classList.add('is-out'), 720);
+  setTimeout(() => intro.remove(), 1200);
 }
 
 // ============ CAROUSEL (coverflow) ============
