@@ -389,7 +389,7 @@ section { position: relative; }
 }
 .ticker__item {
   padding: 0 24px;
-  color: #fff;
+  color: rgba(255, 255, 255, .6);
   /* a rounded face, a step below the headline (clamp(26px, 3.2vw, 44px)) */
   font-family: "Nunito", var(--font);
   font-size: clamp(18px, 2.2vw, 30px);
@@ -397,7 +397,7 @@ section { position: relative; }
   line-height: 1.2;
   white-space: nowrap;
 }
-.ticker__dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, .45); flex-shrink: 0; }
+.ticker__dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, .3); flex-shrink: 0; }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
 
