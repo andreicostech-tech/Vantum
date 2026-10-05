@@ -15,7 +15,11 @@
   <!-- ============ INTRO (touch screens only, see styles.css) ============ -->
   <div class="intro" id="intro" aria-hidden="true">
     <div class="intro__mark">
-      <svg class="intro__tube" viewBox="0 0 120 110" fill="none"><path d="M18 16 60 94 102 16" pathLength="100"/></svg>
+      <svg class="intro__tube" viewBox="0 0 120 110" fill="none">
+        <path class="intro__piece intro__piece--left" d="M18 16 53 81"/>
+        <path class="intro__piece intro__piece--right" d="M102 16 67 81"/>
+        <path class="intro__piece intro__piece--tip" d="M53 81 60 94 67 81"/>
+      </svg>
       <svg class="intro__light" viewBox="0 0 120 110" fill="none">
         <defs>
           <linearGradient id="introGrad" x1="0" y1="0" x2="1" y2="1">
@@ -23,7 +27,7 @@
             <stop offset="1" stop-color="#1dff6a"/>
           </linearGradient>
         </defs>
-        <path d="M18 16 60 94 102 16" pathLength="100"/>
+        <path d="M18 16 60 94 102 16"/>
       </svg>
     </div>
   </div>

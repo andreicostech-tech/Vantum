@@ -144,7 +144,7 @@ nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false)
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ============ INTRO (touch screens) ============
-// The V draws itself (CSS), lights up once drawn, and evaporates as soon as the page
+// The V assembles itself (CSS, 0.7s), lights up, and evaporates as soon as the page
 // has loaded, but never before the light-up has played and never later than 2.5s.
 const intro = document.getElementById('intro');
 if (getComputedStyle(intro).display === 'none') {
@@ -154,10 +154,10 @@ if (getComputedStyle(intro).display === 'none') {
   const loaded = document.readyState === 'complete'
     ? Promise.resolve()
     : new Promise((resolve) => window.addEventListener('load', resolve, { once: true }));
-  wait(600).then(() => intro.classList.add('is-lit'));
+  wait(720).then(() => intro.classList.add('is-lit'));
   Promise.all([wait(1150), Promise.race([loaded, wait(2500)])]).then(() => {
     intro.classList.add('is-out');
-    setTimeout(() => intro.remove(), 900);
+    setTimeout(() => intro.remove(), 800);
   });
 }
 
