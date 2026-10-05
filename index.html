@@ -12,6 +12,22 @@
 </head>
 <body>
 
+  <!-- ============ INTRO (touch screens only, see styles.css) ============ -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro__mark">
+      <svg class="intro__tube" viewBox="0 0 120 110" fill="none"><path d="M18 16 60 94 102 16" pathLength="100"/></svg>
+      <svg class="intro__light" viewBox="0 0 120 110" fill="none">
+        <defs>
+          <linearGradient id="introGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#a6ff00"/>
+            <stop offset="1" stop-color="#1dff6a"/>
+          </linearGradient>
+        </defs>
+        <path d="M18 16 60 94 102 16" pathLength="100"/>
+      </svg>
+    </div>
+  </div>
+
   <!-- ============ HEADER ============ -->
   <header class="header" id="header">
     <div class="container header__inner">
@@ -207,7 +223,6 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
   <script src="blob.js"></script>
   <script src="i18n.js"></script>
   <script src="script.js"></script>
