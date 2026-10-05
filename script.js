@@ -27,6 +27,7 @@ function applyLanguage(code) {
   document.getElementById('langCurrent').textContent = lang.toUpperCase();
   langMenu.querySelectorAll('[role="option"]').forEach((li) => li.setAttribute('aria-selected', String(li.dataset.lang === lang)));
 
+  renderTicker();
   renderCards();
   if (caseModal.open) openCase(openCaseIndex);
 }
@@ -90,6 +91,12 @@ langMenu.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' || e.key === 'Tab') { setLangMenu(false); if (e.key === 'Escape') langBtn.focus(); }
 });
 document.addEventListener('click', (e) => { if (!e.target.closest('#lang')) setLangMenu(false); });
+
+// ============ TICKER ============
+function renderTicker() {
+  const items = t['clients.ticker'].map((word) => `<span class="ticker__item">${escapeHtml(word)}</span><span class="ticker__dot"></span>`).join('');
+  document.getElementById('ticker').innerHTML = items + items;
+}
 
 // ============ CASE STUDY MODAL ============
 const caseModal = document.getElementById('caseModal');
