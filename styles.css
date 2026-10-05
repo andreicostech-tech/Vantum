@@ -388,14 +388,16 @@ section { position: relative; }
   animation: ticker 30s linear infinite;
 }
 .ticker__item {
-  padding: 0 28px;
+  padding: 0 24px;
   color: #fff;
-  font-size: clamp(22px, 2.6vw, 38px);
+  /* a rounded face, a step below the headline (clamp(26px, 3.2vw, 44px)) */
+  font-family: "Nunito", var(--font);
+  font-size: clamp(18px, 2.2vw, 30px);
   font-weight: 700;
   line-height: 1.2;
   white-space: nowrap;
 }
-.ticker__dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 255, 255, .45); flex-shrink: 0; }
+.ticker__dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, .45); flex-shrink: 0; }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
 
