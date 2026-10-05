@@ -1,6 +1,8 @@
 // ============ DATA ============
 // Card colours for the case studies. Their texts live in i18n.js (`cases`), in the same order.
 const CASE_HUES = [150, 320, 30, 195, 260, 120, 220];
+// which project type (index in `form.types`) each case study's "start a similar project" picks
+const CASE_TYPES = [0, 1, 2, 3, 2, 5, 2];
 
 // ============ LANGUAGE ============
 const LANG_KEY = 'vantum-lang';
@@ -23,11 +25,13 @@ function applyLanguage(code) {
   document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t[el.dataset.i18n]; });
   document.querySelectorAll('[data-i18n-html]').forEach((el) => { el.innerHTML = t[el.dataset.i18nHtml]; });
   document.querySelectorAll('[data-i18n-aria]').forEach((el) => el.setAttribute('aria-label', t[el.dataset.i18nAria]));
+  document.querySelectorAll('[data-i18n-ph]').forEach((el) => { el.placeholder = t[el.dataset.i18nPh]; });
 
   document.getElementById('langCurrent').textContent = lang.toUpperCase();
   langMenu.querySelectorAll('[role="option"]').forEach((li) => li.setAttribute('aria-selected', String(li.dataset.lang === lang)));
 
   renderTicker();
+  renderFormOptions();
   renderCards();
   if (caseModal.open) openCase(openCaseIndex);
 }
@@ -98,6 +102,93 @@ function renderTicker() {
   document.getElementById('ticker').innerHTML = items + items;
 }
 
+// ============ PROJECT REQUEST FORM ============
+// Requests are emailed to contact@vantumit.ro by Web3Forms. The access key is meant to be
+// public: it can only send messages to that inbox.
+const WEB3FORMS_KEY = '47bec94e-1d80-4a43-b998-a5d60db46704';
+const leadModal = document.getElementById('leadModal');
+const leadForm = document.getElementById('leadForm');
+const leadDone = document.getElementById('leadDone');
+const leadStatus = document.getElementById('leadStatus');
+const leadSubmit = leadForm.querySelector('.lead__submit');
+
+// select options are indexes into the translated lists, so a choice survives a language switch
+function renderFormOptions() {
+  leadForm.querySelectorAll('select[data-options]').forEach((select) => {
+    const chosen = select.value;
+    const first = `<option value="">${select.required ? t['form.choose'] : '—'}</option>`;
+    select.innerHTML = first + t[select.dataset.options].map((label, i) => `<option value="${i}">${escapeHtml(label)}</option>`).join('');
+    select.value = chosen;
+  });
+}
+
+function openLead(type) {
+  leadForm.hidden = false;
+  leadDone.hidden = true;
+  leadStatus.textContent = '';
+  if (type !== undefined && type !== '') leadForm.elements.type.value = String(type);
+  if (caseModal.open) caseModal.close();
+  if (!leadModal.open) leadModal.showModal();
+}
+
+document.addEventListener('click', (e) => {
+  const opener = e.target.closest('[data-open-form]');
+  if (!opener) return;
+  e.preventDefault();
+  setMenu(false);
+  openLead(opener.dataset.openForm);
+});
+document.getElementById('leadClose').addEventListener('click', () => leadModal.close());
+document.getElementById('leadDoneClose').addEventListener('click', () => leadModal.close());
+leadModal.addEventListener('click', (e) => { if (e.target === leadModal) leadModal.close(); });
+
+leadForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (leadForm.elements.botcheck.checked) return;
+
+  // the email is always written in Romanian, whatever language the visitor used
+  const ro = I18N.ro;
+  const f = leadForm.elements;
+  const pick = (list, value) => (value === '' ? '—' : ro[list][Number(value)]);
+  const type = pick('form.types', f.type.value);
+  const payload = {
+    access_key: WEB3FORMS_KEY,
+    subject: `Cerere nouă de pe site: ${type} — ${f.name.value.trim()}`,
+    from_name: 'Site Vantum',
+    email: f.email.value.trim(),
+    Nume: f.name.value.trim(),
+    Firmă: f.company.value.trim() || '—',
+    Telefon: f.phone.value.trim() || '—',
+    'Tipul proiectului': type,
+    'Buget orientativ': pick('form.budgets', f.budget.value),
+    'Termen dorit': pick('form.deadlines', f.deadline.value),
+    'Descrierea cerinței': f.message.value.trim(),
+    'Acord GDPR': 'Da',
+    'Limba site-ului': LANGS[lang],
+  };
+
+  leadSubmit.disabled = true;
+  leadSubmit.textContent = t['form.sending'];
+  leadStatus.textContent = '';
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.success) throw new Error(data.message || res.status);
+    leadForm.reset();
+    leadForm.hidden = true;
+    leadDone.hidden = false;
+  } catch {
+    leadStatus.textContent = t['form.error'];
+  } finally {
+    leadSubmit.disabled = false;
+    leadSubmit.textContent = t['form.submit'];
+  }
+});
+
 // ============ CASE STUDY MODAL ============
 const caseModal = document.getElementById('caseModal');
 const caseContent = document.getElementById('caseContent');
@@ -120,7 +211,7 @@ function openCase(i) {
       <p>${escapeHtml(c.solution)}</p>
       <h3>${t['case.results']}</h3>
       <ul class="case__results">${c.results.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul>
-      <a href="#contact" class="btn btn--primary" id="caseCta">${t['case.cta']}</a>
+      <a href="#contact" class="btn btn--primary" id="caseCta" data-open-form="${CASE_TYPES[i]}">${t['case.cta']}</a>
     </div>`;
   if (!caseModal.open) caseModal.showModal();
 }
@@ -129,7 +220,6 @@ document.getElementById('caseClose').addEventListener('click', () => caseModal.c
 // clicking the dark backdrop (the dialog itself, outside its content) closes it
 caseModal.addEventListener('click', (e) => {
   if (e.target === caseModal) caseModal.close();
-  if (e.target.closest('#caseCta')) caseModal.close();
 });
 
 // ============ HEADER ============

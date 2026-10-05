@@ -55,7 +55,7 @@
           </button>
           <ul class="lang__menu" id="langMenu" role="listbox" hidden></ul>
         </div>
-        <a href="#contact" class="btn btn--primary" data-i18n="header.cta">Work with us</a>
+        <a href="#contact" class="btn btn--primary" data-open-form data-i18n="header.cta">Work with us</a>
         <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">
           <span></span><span></span><span></span>
         </button>
@@ -136,7 +136,7 @@
           <h3 data-i18n="about.mission">Our mission</h3>
           <p data-i18n="about.missionText">To create and expand digital business with an ethic approach. We are here to help small and medium size companies that need professional expertise to launch or relaunch products using digital services.</p>
 
-          <a href="#contact" class="btn btn--primary" data-i18n="about.btn">Let's connect</a>
+          <a href="#contact" class="btn btn--primary" data-open-form data-i18n="about.btn">Let's connect</a>
         </div>
       </div>
     </section>
@@ -157,7 +157,7 @@
       <div class="container reveal">
         <h2 data-i18n-html="cta.title">Best things in life are simple but <br>simple is not simple</h2>
         <p data-i18n="cta.text">Book a meeting with us today and take the first step toward smarter business.</p>
-        <a href="#contact" class="btn btn--primary" data-i18n="cta.btn">Let's talk</a>
+        <a href="#contact" class="btn btn--primary" data-open-form data-i18n="cta.btn">Let's talk</a>
       </div>
     </section>
 
@@ -185,6 +185,43 @@
     <div class="case__content" id="caseContent"></div>
   </dialog>
 
+  <!-- ============ PROJECT REQUEST FORM ============ -->
+  <!-- sent to contact@vantumit.ro through Web3Forms (script.js) -->
+  <dialog class="case lead" id="leadModal" aria-labelledby="leadTitle">
+    <button class="case__close" id="leadClose" aria-label="Close" data-i18n-aria="form.close">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <div class="lead__body">
+      <form class="lead__form" id="leadForm">
+        <h2 class="case__title" id="leadTitle" data-i18n="form.title">Tell us about your project</h2>
+        <p class="lead__intro" data-i18n="form.intro">Leave your details and a few words about what you need.</p>
+        <!-- spam trap: people never see or tick it -->
+        <input type="checkbox" name="botcheck" class="lead__trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="lead__grid">
+          <label class="field is-required"><span data-i18n="form.name">Name</span><input name="name" required autocomplete="name" maxlength="120"></label>
+          <label class="field"><span data-i18n="form.company">Company</span><input name="company" autocomplete="organization" maxlength="120"></label>
+          <label class="field is-required"><span data-i18n="form.email">Email</span><input type="email" name="email" required autocomplete="email" maxlength="160"></label>
+          <label class="field"><span data-i18n="form.phone">Phone</span><input type="tel" name="phone" autocomplete="tel" maxlength="40"></label>
+          <label class="field field--wide is-required"><span data-i18n="form.type">Project type</span><select name="type" required data-options="form.types"></select></label>
+          <label class="field"><span data-i18n="form.budget">Estimated budget</span><select name="budget" data-options="form.budgets"></select></label>
+          <label class="field"><span data-i18n="form.deadline">Desired timeline</span><select name="deadline" data-options="form.deadlines"></select></label>
+          <label class="field field--wide is-required"><span data-i18n="form.message">What do you need?</span><textarea name="message" rows="5" required maxlength="4000" data-i18n-ph="form.messagePh"></textarea></label>
+          <label class="lead__consent field--wide"><input type="checkbox" name="consent" required><span data-i18n-html="form.consent">I agree that Vantum may use these details to contact me about my request.</span></label>
+        </div>
+        <button type="submit" class="btn btn--primary lead__submit" data-i18n="form.submit">Send request</button>
+        <p class="lead__status" id="leadStatus" role="status" aria-live="polite"></p>
+      </form>
+      <div class="lead__done" id="leadDone" hidden>
+        <div class="lead__check" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2 class="case__title" data-i18n="form.doneTitle">Thank you!</h2>
+        <p class="lead__intro" data-i18n="form.doneText">We've received your request and will get back to you soon.</p>
+        <button type="button" class="btn btn--primary" id="leadDoneClose" data-i18n="form.close">Close</button>
+      </div>
+    </div>
+  </dialog>
+
   <!-- ============ FOOTER ============ -->
   <footer class="footer" id="contact">
     <div class="footer__mark" id="footerMark" aria-hidden="true"><span class="fm fm--v">V</span><span class="fm fm--a">A</span><span class="fm fm--n">N</span><span class="fm fm--t"><span class="fm-t__stem">T</span><span class="fm-t__bar">T</span></span><span class="fm fm--u">U</span><span class="fm fm--m">M</span><span class="fm fm--dot">.</span></div>
@@ -198,9 +235,9 @@
       </div>
 
       <div class="footer__col">
-        <h4 data-i18n="footer.newsletter">Newsletter</h4>
-        <span data-i18n="footer.newsletterText">Subscribe to get our latest updates and insights.</span>
-        <a href="#contact" class="btn btn--dark" data-i18n="footer.subscribe">Subscribe to Newsletter</a>
+        <h4 data-i18n="footer.project">Have a project?</h4>
+        <span data-i18n="footer.projectText">Let's talk about what you want to build.</span>
+        <a href="#contact" class="btn btn--dark" data-open-form data-i18n="footer.projectBtn">Send your request</a>
       </div>
 
       <div class="footer__col">
