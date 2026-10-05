@@ -288,9 +288,9 @@ section { position: relative; }
 .hero__title {
   position: relative;
   z-index: 2;
-  font-size: clamp(38px, 9.3vw, 184px);
+  font-size: clamp(42px, 10vw, 200px);
   font-weight: 800;
-  line-height: .98;
+  line-height: 1.06;
   letter-spacing: -.02em;
   text-transform: uppercase;
 }
