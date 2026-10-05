@@ -367,9 +367,9 @@ section { position: relative; }
 /* ============ CLIENTS ============ */
 .clients { padding: 50px 0 70px; text-align: center; }
 
-.clients__headline .accent { color: var(--lime); }  /* same green as DIGITAL in the hero */
 .clients__headline {
   max-width: 900px;
+  color: var(--lime);   /* same green as DIGITAL in the hero */
   margin: 0 auto;
   font-size: clamp(26px, 3.2vw, 44px);
   font-weight: 700;
