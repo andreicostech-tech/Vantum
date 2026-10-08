@@ -91,29 +91,6 @@
       </div>
     </section>
 
-    <!-- ============ WORK ============ -->
-    <section class="work" id="work">
-      <canvas class="dots" id="workDots" aria-hidden="true"></canvas>
-      <div class="container">
-        <h2 class="section-title"><span data-i18n="work.title">Our Work</span></h2>
-      </div>
-
-      <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Case studies">
-        <div class="carousel__stage" id="carouselStage"></div>
-        <div class="carousel__nav">
-          <button class="carousel__arrow" id="prev" aria-label="Previous project" data-i18n-aria="work.prev">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M14 4 7 11l7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="carousel__arrow" id="next" aria-label="Next project" data-i18n-aria="work.next">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="m8 4 7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-        <div class="carousel__all">
-          <a href="#work" class="btn btn--outline" data-i18n="work.all">See all work</a>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ PROCESS / ABOUT ============ -->
     <section class="process" id="about">
       <div class="container process__inner">
@@ -210,7 +187,31 @@
   </dialog>
 
   <!-- ============ FOOTER ============ -->
-  <footer class="footer" id="contact">
+  <footer class="footer">
+    <!-- ============ WORK ============ -->
+    <section class="work" id="work">
+      <canvas class="dots" id="workDots" aria-hidden="true"></canvas>
+      <div class="container">
+        <h2 class="section-title"><span data-i18n="work.title">Our Work</span></h2>
+      </div>
+
+      <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Case studies">
+        <div class="carousel__stage" id="carouselStage"></div>
+        <div class="carousel__nav">
+          <button class="carousel__arrow" id="prev" aria-label="Previous project" data-i18n-aria="work.prev">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M14 4 7 11l7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="carousel__arrow" id="next" aria-label="Next project" data-i18n-aria="work.next">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="m8 4 7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="carousel__all">
+          <a href="#work" class="btn btn--outline" data-i18n="work.all">See all work</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer__body" id="contact">
     <div class="footer__mark" id="footerMark" aria-hidden="true"><span class="fm fm--v">V</span><span class="fm fm--a">A</span><span class="fm fm--n">N</span><span class="fm fm--t"><span class="fm-t__stem">T</span><span class="fm-t__bar">T</span></span><span class="fm fm--u">U</span><span class="fm fm--m">M</span><span class="fm fm--dot">.</span></div>
 
     <div class="container footer__grid">
@@ -251,6 +252,7 @@
           </a>
         </div>
       </div>
+    </div>
     </div>
   </footer>
 
