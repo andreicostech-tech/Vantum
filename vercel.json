@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    { "source": "/stickere-moto", "destination": "/stickere-moto/", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/stickere-moto/", "destination": "https://stickere-moto.vercel.app/" },
+    { "source": "/stickere-moto/:path*", "destination": "https://stickere-moto.vercel.app/:path*" }
+  ],
+  "headers": [
+    {
+      "source": "/stickere-moto/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
+  ]
+}
