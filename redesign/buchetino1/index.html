@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Buchetino — Florărie de lux non stop în București</title>
+  <meta name="description" content="Trandafiri criogenați în cutii de lux, buchete imense de bujori, aranjamente pentru evenimente și băuturi premium. Livrare non stop în București.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23d3122b' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E">
+  <script>
+    /* Intro-ul cu logo rulează o singură dată pe sesiune (forțat cu ?intro) */
+    (function () {
+      var show = true;
+      try {
+        if (sessionStorage.getItem('bt-intro') && location.search.indexOf('intro') === -1) show = false;
+      } catch (e) {}
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) show = false;
+      document.documentElement.classList.add(show ? 'has-intro' : 'no-intro');
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- SVG sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 20.5c1.2-3.6 4-5.4 7.5-5.4s6.3 1.8 7.5 5.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12.5H6L5 8z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M9 10V6.5a3 3 0 016 0V10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-like" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0112 7.2a4.3 4.3 0 017.5 2.6C19.5 15.4 12 20 12 20z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3.5 7h17M3.5 12h17M3.5 17h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11v9h-11zM13.5 9.5h4l3 3v3h-7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="7" cy="17.5" r="1.8" fill="var(--paper)" stroke="currentColor" stroke-width="1.3"/><circle cx="17" cy="17.5" r="1.8" fill="var(--paper)" stroke="currentColor" stroke-width="1.3"/></symbol>
+    <symbol id="i-rose" viewBox="0 0 24 24"><path d="M12 13c-3 0-5-2-5-5 0-1.5.6-3 1.6-3.8C9.5 5.5 10.6 6 12 6s2.5-.5 3.4-1.8C16.4 5 17 6.5 17 8c0 3-2 5-5 5zM12 13v8M12 17c-1.5-1.8-3.5-2.4-5.5-2 .6 2 2.6 3 5.5 2zM12 16c1.3-1.5 3-2 4.8-1.6-.6 1.7-2.3 2.5-4.8 1.6z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8.5 10.5V7.5a3.5 3.5 0 017 0v3" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><path d="M4 10h16v10.5H4zM3 7h18v3H3zM12 7v13.5M12 7c-1-2.8-4.8-3.6-4.8-1.4C7.2 7 9.8 7 12 7zm0 0c1-2.8 4.8-3.6 4.8-1.4C16.8 7 14.2 7 12 7z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h3l1.5 4.2-2 1.4a11 11 0 005.8 5.8l1.4-2 4.2 1.5v3c0 1-.8 1.8-1.8 1.8C10.6 19.2 4.8 13.4 4.8 5.3c0-1 .8-1.8 1.8-1.8z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path d="M13.5 21v-7.5H16l.4-3h-2.9V8.7c0-.9.3-1.5 1.5-1.5h1.5V4.5c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.3H8.1v3h2.5V21h2.9z" fill="currentColor"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-yt" viewBox="0 0 24 24"><path d="M21 8.2a2.6 2.6 0 00-1.8-1.8C17.6 6 12 6 12 6s-5.6 0-7.2.4A2.6 2.6 0 003 8.2 27 27 0 002.6 12c0 1.3.1 2.6.4 3.8a2.6 2.6 0 001.8 1.8c1.6.4 7.2.4 7.2.4s5.6 0 7.2-.4a2.6 2.6 0 001.8-1.8c.3-1.2.4-2.5.4-3.8s-.1-2.6-.4-3.8zM10.2 14.6V9.4L14.8 12l-4.6 2.6z" fill="currentColor"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12.3 3C7.4 3 5 6.5 5 9.4c0 1.8.7 3.4 2.1 4 .2.1.4 0 .5-.3l.2-.8c.1-.3 0-.4-.2-.6-.4-.5-.7-1.2-.7-2.1 0-2.7 2-5.1 5.3-5.1 2.9 0 4.4 1.8 4.4 4.1 0 3.1-1.4 5.7-3.4 5.7-1.1 0-2-.9-1.7-2.1.3-1.4 1-2.9 1-3.9 0-.9-.5-1.6-1.5-1.6-1.2 0-2.1 1.2-2.1 2.8 0 1 .3 1.7.3 1.7l-1.4 5.9c-.4 1.7-.1 3.9 0 4.1 0 .1.2.2.3.1.1-.2 1.5-1.9 2-3.6l.8-3c.4.7 1.5 1.4 2.7 1.4 3.5 0 5.9-3.2 5.9-7.5C19 6.2 16.3 3 12.3 3z" fill="currentColor"/></symbol>
+  </svg>
+
+  <!-- ========== INTRO: inima se așază pe „i” ========== -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro-inner">
+      <div class="logo-word logo-word--xl">
+        <span class="lw-part lw-a">Buchet</span><span class="logo-i">ı<svg class="logo-heart"><use href="#i-heart"/></svg></span><span class="lw-part lw-b">no</span>
+      </div>
+      <p class="intro-tag">Florărie de lux &middot; Non stop</p>
+    </div>
+  </div>
+
+  <!-- ========== HEADER ========== -->
+  <div class="announce">
+    <p>Livrare <strong>non stop</strong> în București &nbsp;·&nbsp; Comenzi telefonice <a href="tel:0720701701">0720 701 701</a></p>
+  </div>
+
+  <header class="header" id="header">
+    <div class="header-top container">
+      <div class="header-left">
+        <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Deschide meniul"><svg><use href="#i-menu"/></svg></button>
+        <form class="search" role="search" action="https://buchetino.ro/cautare" method="get">
+          <svg><use href="#i-search"/></svg>
+          <input type="search" name="s" placeholder="Caută flori, cadouri…" aria-label="Caută">
+          <input type="hidden" name="controller" value="search">
+        </form>
+      </div>
+
+      <a class="logo" href="#" aria-label="Buchetino — acasă">
+        <span class="logo-word">Buchet<span class="logo-i">ı<svg class="logo-heart"><use href="#i-heart"/></svg></span>no</span>
+      </a>
+
+      <div class="header-right">
+        <a class="icon-btn hide-sm" href="https://buchetino.ro/contul-meu" aria-label="Contul meu"><svg><use href="#i-user"/></svg></a>
+        <button class="icon-btn" id="cartOpen" aria-label="Coșul de cumpărături">
+          <svg><use href="#i-bag"/></svg><span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Meniu principal">
+      <ul class="nav-list container">
+        <li><a href="#">Acasă</a></li>
+        <li class="has-mega">
+          <a href="https://buchetino.ro/index.php?id_category=2&controller=category">Colecții <svg><use href="#i-down"/></svg></a>
+          <div class="mega">
+            <div class="mega-inner container">
+              <div class="mega-col">
+                <h4><a href="https://buchetino.ro/15-trandafiri-criogenati">Trandafiri criogenați</a></h4>
+                <a href="https://buchetino.ro/16-inima-trandafiri-criogenati-mare">Inimă trandafiri criogenați mare</a>
+                <a href="https://buchetino.ro/54-inima-trandafiri-criogenati-gigant">Inimă trandafiri criogenați gigant</a>
+                <a href="https://buchetino.ro/17-trandafiri-criogenati-cutie-patrata">Cutie pătrată</a>
+                <a href="https://buchetino.ro/18-trandafiri-criogenati-cutie-medie">Cutie medie</a>
+                <a href="https://buchetino.ro/19-trandafiri-criogenati-cutie-mare">Cutie mare</a>
+                <a href="https://buchetino.ro/35-trandafiri-criogenati-cutii-luxury">Cutii Luxury</a>
+                <a href="https://buchetino.ro/77-trandafiri-criogenati-in-cupola-sticla">În cupolă de sticlă</a>
+                <a href="https://buchetino.ro/79-trandafiri-placati-cu-aur-24k">Placați cu aur 24K</a>
+                <a href="https://buchetino.ro/81-trandafir-nemuritor-in-cutie">Trandafir nemuritor în cutie</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="https://buchetino.ro/6-florarie-non-stop">Florărie non stop</a></h4>
+                <a href="https://buchetino.ro/23-inima-trandafiri-naturali-mare">Inimă trandafiri naturali mare</a>
+                <a href="https://buchetino.ro/55-inima-trandafiri-naturali-gigant">Inimă trandafiri naturali gigant</a>
+                <a href="https://buchetino.ro/25-trandafiri-naturali-cutie-rotunda">Cutie rotundă</a>
+                <a href="https://buchetino.ro/22-trandafiri-naturali-cutie-medie">Cutie medie</a>
+                <a href="https://buchetino.ro/24-trandafiri-naturali-cutie-mare">Cutie mare</a>
+                <a href="https://buchetino.ro/20-trandafiri-naturali-cutie-gigant">Cutie gigant</a>
+                <a href="https://buchetino.ro/82-aranjament-de-lux-cu-trandafiri">Aranjament de lux cu trandafiri</a>
+                <a href="https://buchetino.ro/36-cutii-de-lux-cu-flori">Cutii de lux cu flori</a>
+                <a href="https://buchetino.ro/37-lalele">Lalele</a>
+                <a href="https://buchetino.ro/38-flori-de-primavara">Flori de primăvară</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="https://buchetino.ro/26-buchete-flori-non-stop">Buchete flori</a></h4>
+                <a href="https://buchetino.ro/40-buchete-trandafiri-imperiali">Buchete trandafiri imperiali</a>
+                <a href="https://buchetino.ro/78-buchete-imense-de-bujori">Buchete imense de bujori</a>
+                <a href="https://buchetino.ro/80-buchete-lalele">Buchete lalele</a>
+                <a href="https://buchetino.ro/83-buchete-de-lux-">Buchete de lux</a>
+                <a href="https://buchetino.ro/84-buchete-flori-deosebite">Buchete flori deosebite</a>
+                <a href="https://buchetino.ro/66-buchet-special-flori-in-cutie">Buchet special flori în cutie</a>
+                <a href="https://buchetino.ro/85-buchetino-limited-edition">Buchetino Limited Edition</a>
+              </div>
+              <a class="mega-feature" href="https://buchetino.ro/35-trandafiri-criogenati-cutii-luxury">
+                <img src="img/products/luxury-1.jpg" alt="" loading="lazy">
+                <span><em>Nou</em> Cutii Luxury</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="has-mega">
+          <a href="https://buchetino.ro/28-evenimente">Evenimente <svg><use href="#i-down"/></svg></a>
+          <div class="mega">
+            <div class="mega-inner container">
+              <div class="mega-col">
+                <h4><a href="https://buchetino.ro/30-florarie-nonstop-0720701701">Nunți &amp; botezuri</a></h4>
+                <a href="https://buchetino.ro/41-buchete-mireasa">Buchete mireasă</a>
+                <a href="https://buchetino.ro/47-buchete-cununie">Buchete cununie</a>
+                <a href="https://buchetino.ro/42-lumanari-nunta">Lumânări nuntă</a>
+                <a href="https://buchetino.ro/43-lumanari-botez">Lumânări botez</a>
+                <a href="https://buchetino.ro/44-marturii">Mărturii</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="https://buchetino.ro/31-decoratiuni-locatii">Decorațiuni locații</a></h4>
+                <a href="https://buchetino.ro/48-saloane-nunti">Saloane nunți</a>
+                <a href="https://buchetino.ro/49-camere-romantice">Camere romantice</a>
+                <a href="https://buchetino.ro/51-petreceri-burlaci">Petreceri burlaci</a>
+                <a href="https://buchetino.ro/52-corporate">Corporate</a>
+                <a href="https://buchetino.ro/53-majorate">Majorate</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="https://buchetino.ro/62-buchetino-dolce">Buchetino Dolce</a></h4>
+                <a href="https://buchetino.ro/63-torturi-buchetino">Torturi Buchetino</a>
+                <a href="https://buchetino.ro/64-trandafiri-ciocolata">Trandafiri &amp; ciocolată</a>
+                <a href="https://buchetino.ro/65-cupcakes">Cupcakes</a>
+                <h4 class="mt"><a href="https://buchetino.ro/56-aranjamente-personalizate">Aranjamente personalizate</a></h4>
+                <a href="https://buchetino.ro/57-litere-trandafiri">Litere din trandafiri</a>
+                <a href="https://buchetino.ro/58-cifre-trandafiri">Cifre din trandafiri</a>
+                <a href="https://buchetino.ro/59-mesaje-trandafiri">Mesaje din trandafiri</a>
+              </div>
+              <a class="mega-feature" href="https://buchetino.ro/41-buchete-mireasa">
+                <img src="img/products/mireasa.jpg" alt="" loading="lazy">
+                <span><em>Nunți</em> Buchete de mireasă</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="has-drop">
+          <a href="https://buchetino.ro/70-bauturi-non-stop">Băuturi non stop <svg><use href="#i-down"/></svg></a>
+          <div class="drop">
+            <a href="https://buchetino.ro/71-sampanie">Șampanie</a>
+            <a href="https://buchetino.ro/72-coniac">Coniac</a>
+            <a href="https://buchetino.ro/73-rom">Rom</a>
+            <a href="https://buchetino.ro/74-whisky">Whisky</a>
+            <a href="https://buchetino.ro/75-vodka">Vodka</a>
+            <a href="https://buchetino.ro/76-gin">Gin</a>
+          </div>
+        </li>
+        <li><a href="https://buchetino.ro/60-vouchere">Vouchere</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ========== HERO CAROUSEL ========== -->
+    <section class="hero" id="hero" aria-roledescription="carousel" aria-label="Colecții recomandate">
+      <div class="hero-track">
+
+        <article class="slide is-active" data-theme="dark">
+          <div class="slide-media"><img src="img/hero-1.jpg" alt="Cutii Buchetino cu trandafiri criogenați, șampanie Moët și ursuleț Buchetino"></div>
+          <div class="slide-copy">
+            <p class="eyebrow">Colecția semnătură</p>
+            <h1>Trandafiri criogenați<br><em>în cutii de lux</em></h1>
+            <p class="lede">Trandafiri naturali, păstrați luni de zile fără apă. Aranjați manual în cutiile Buchetino.</p>
+            <div class="cta-row">
+              <a class="btn btn-light" href="https://buchetino.ro/15-trandafiri-criogenati">Descoperă colecția</a>
+              <a class="link-arrow light" href="https://buchetino.ro/35-trandafiri-criogenati-cutii-luxury">Cutii Luxury <svg><use href="#i-chev"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide slide--split" data-theme="light">
+          <div class="slide-media"><img src="img/products/bujori-imperiali.jpg" alt="Buchet imens de bujori imperiali" loading="lazy"></div>
+          <div class="slide-copy">
+            <p class="eyebrow">Buchete de sezon</p>
+            <h2>Bujori imperiali,<br><em>în buchete imense</em></h2>
+            <p class="lede">Buchete generoase de bujori și trandafiri, livrate în aceeași zi oriunde în București.</p>
+            <div class="cta-row">
+              <a class="btn" href="https://buchetino.ro/78-buchete-imense-de-bujori">Vezi buchetele</a>
+              <a class="link-arrow" href="https://buchetino.ro/26-buchete-flori-non-stop">Toate buchetele <svg><use href="#i-chev"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide slide--split slide--reverse" data-theme="light">
+          <div class="slide-media"><img src="img/products/inima-gigant-1.jpg" alt="Inimă gigant din trandafiri criogenați roșii și albi" loading="lazy"></div>
+          <div class="slide-copy">
+            <p class="eyebrow">Pentru o declarație</p>
+            <h2>Inima Buchetino,<br><em>în mărime gigant</em></h2>
+            <p class="lede">Sute de trandafiri criogenați așezați în formă de inimă. Alegi culorile, noi o compunem.</p>
+            <div class="cta-row">
+              <a class="btn" href="https://buchetino.ro/54-inima-trandafiri-criogenati-gigant">Comandă inima</a>
+              <a class="link-arrow" href="https://buchetino.ro/56-aranjamente-personalizate">Personalizează <svg><use href="#i-chev"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide slide--split" data-theme="light">
+          <div class="slide-media"><img src="img/products/armand-gold.jpg" alt="Șampanie Armand de Brignac Gold Brut" loading="lazy"></div>
+          <div class="slide-copy">
+            <p class="eyebrow">Băuturi non stop</p>
+            <h2>Flori și șampanie,<br><em>la orice oră</em></h2>
+            <p class="lede">Armand de Brignac, Dom Pérignon, Moët &amp; Chandon. Le adaugi în aceeași comandă cu florile.</p>
+            <div class="cta-row">
+              <a class="btn" href="https://buchetino.ro/71-sampanie">Alege șampania</a>
+              <a class="link-arrow" href="https://buchetino.ro/70-bauturi-non-stop">Toate băuturile <svg><use href="#i-chev"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="hero-controls">
+        <button class="hero-arrow" data-dir="-1" aria-label="Slide anterior"><svg style="transform:rotate(180deg)"><use href="#i-chev"/></svg></button>
+        <div class="hero-dots" role="tablist"></div>
+        <button class="hero-arrow" data-dir="1" aria-label="Slide următor"><svg><use href="#i-chev"/></svg></button>
+      </div>
+      <div class="hero-progress"><span></span></div>
+    </section>
+
+    <!-- ========== AVANTAJE ========== -->
+    <section class="perks">
+      <div class="container perks-grid">
+        <div class="perk"><svg><use href="#i-truck"/></svg><div><strong>Livrare non stop</strong><span>24/7 în București</span></div></div>
+        <div class="perk"><svg><use href="#i-rose"/></svg><div><strong>Trandafiri premium</strong><span>Aranjați manual</span></div></div>
+        <div class="perk"><svg><use href="#i-gift"/></svg><div><strong>Personalizare</strong><span>Culori, mesaje, inițiale</span></div></div>
+        <div class="perk"><svg><use href="#i-lock"/></svg><div><strong>Plată securizată</strong><span>Card sau ramburs</span></div></div>
+      </div>
+    </section>
+
+    <!-- ========== COLECȚII ========== -->
+    <section class="section">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Colecții</p>
+          <h2>Alege după ocazie</h2>
+        </header>
+        <div class="cats">
+          <a class="cat reveal" href="https://buchetino.ro/15-trandafiri-criogenati">
+            <img src="img/products/cutie-mare-1.jpg" alt="" loading="lazy">
+            <span class="cat-label"><small>De la 250 lei</small>Trandafiri criogenați</span>
+          </a>
+          <a class="cat reveal" href="https://buchetino.ro/26-buchete-flori-non-stop">
+            <img src="img/products/buchet-101.jpg" alt="" loading="lazy">
+            <span class="cat-label"><small>De la 400 lei</small>Buchete &amp; flori naturale</span>
+          </a>
+          <a class="cat reveal" href="https://buchetino.ro/28-evenimente">
+            <img src="img/products/cifre.jpg" alt="" loading="lazy">
+            <span class="cat-label"><small>Nunți, botezuri, aniversări</small>Evenimente</span>
+          </a>
+          <a class="cat reveal" href="https://buchetino.ro/62-buchetino-dolce">
+            <img src="img/products/dolce.jpg" alt="" loading="lazy">
+            <span class="cat-label"><small>Flori &amp; dulciuri</small>Buchetino Dolce</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PRODUSE ========== -->
+    <section class="section section--paper" id="produse">
+      <div class="container">
+        <header class="section-head section-head--row">
+          <div>
+            <p class="eyebrow">Cele mai iubite</p>
+            <h2>Produse populare</h2>
+          </div>
+          <div class="tabs" role="tablist">
+            <button class="tab is-active" role="tab" data-tab="popular">Populare</button>
+            <button class="tab" role="tab" data-tab="flori">Flori naturale</button>
+            <button class="tab" role="tab" data-tab="cadouri">Cadouri</button>
+          </div>
+        </header>
+        <div class="grid" id="productGrid"></div>
+        <div class="center">
+          <a class="btn btn-outline" href="https://buchetino.ro/2-acasa">Toate produsele</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== POVESTE ========== -->
+    <section class="story">
+      <div class="container story-grid">
+        <div class="story-media reveal">
+          <img src="img/products/inima-mare.jpg" alt="Inimă din trandafiri criogenați albi și aurii" loading="lazy">
+          <img class="story-media-sm" src="img/products/cupola-mov.jpg" alt="Trandafir criogenat mov în cupolă de sticlă" loading="lazy">
+        </div>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Despre Buchetino</p>
+          <h2>Flori care<br><em>rămân</em> frumoase</h2>
+          <p>Trandafirii criogenați sunt flori naturale, tratate imediat după tăiere ca să își păstreze culoarea și textura. Nu au nevoie de apă și nici de îngrijire.</p>
+          <p>Fiecare cutie Buchetino e compusă manual, floare cu floare, în atelierul nostru din București. Alegi forma, mărimea și culorile, iar noi livrăm la orice oră.</p>
+          <a class="link-arrow" href="https://buchetino.ro/content/4-despre-noi">Povestea noastră <svg><use href="#i-chev"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CTA NON STOP ========== -->
+    <section class="cta-band" id="contact">
+      <div class="container cta-band-inner">
+        <div>
+          <p class="eyebrow light">Florărie non stop</p>
+          <h2>Ai nevoie de flori acum?<br><em>Te ajutăm la orice oră.</em></h2>
+        </div>
+        <div class="cta-band-actions">
+          <a class="btn btn-light" href="tel:0720701701"><svg><use href="#i-phone"/></svg> 0720 701 701</a>
+          <a class="link-arrow light" href="https://buchetino.ro/contact">Formular de contact <svg><use href="#i-chev"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="logo logo--footer" href="#" aria-label="Buchetino">
+          <span class="logo-word">Buchet<span class="logo-i">ı<svg class="logo-heart"><use href="#i-heart"/></svg></span>no</span>
+        </a>
+        <p>Florărie de lux non stop în București. Trandafiri criogenați, buchete, aranjamente pentru evenimente și băuturi premium.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/cutiicutrandafiri" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+          <a href="https://www.instagram.com/buchetino" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCrcA3PmBziKPqjVdDytgpWw" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Firma noastră</h5>
+        <a href="https://buchetino.ro/content/1-livrari-aranjamente-florale">Livrări aranjamente florale</a>
+        <a href="https://buchetino.ro/content/2-termeni-legali">Termeni legali</a>
+        <a href="https://buchetino.ro/content/4-despre-noi">Despre noi</a>
+        <a href="https://buchetino.ro/content/5-metode-de-plata-in-siguranta">Metode de plată în siguranță</a>
+        <a href="https://buchetino.ro/magazine">Magazine</a>
+      </div>
+      <div>
+        <h5>Contul tău</h5>
+        <a href="https://buchetino.ro/identitate">Informații personale</a>
+        <a href="https://buchetino.ro/istoria-comenzilor">Comenzi</a>
+        <a href="https://buchetino.ro/nota-credit">Note de credit</a>
+        <a href="https://buchetino.ro/adrese">Adrese</a>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <a href="tel:0720701701">0720 701 701</a>
+        <a href="https://buchetino.ro/contact">Contactează-ne</a>
+        <a href="https://buchetino.ro/magazine">Magazine</a>
+        <span class="muted">Livrare non stop, 24/7</span>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year">2026</span> Buchetino. Toate drepturile rezervate.</span>
+      <span>Plată securizată · Visa · Mastercard</span>
+    </div>
+  </footer>
+
+  <!-- ========== MOBILE MENU ========== -->
+  <div class="drawer drawer--left" id="menuDrawer" aria-hidden="true">
+    <div class="drawer-head">
+      <span class="logo-word logo-word--sm">Buchet<span class="logo-i">ı<svg class="logo-heart"><use href="#i-heart"/></svg></span>no</span>
+      <button class="icon-btn" data-close aria-label="Închide"><svg><use href="#i-close"/></svg></button>
+    </div>
+    <nav class="m-nav">
+      <a href="#">Acasă</a>
+      <details>
+        <summary>Trandafiri criogenați <svg><use href="#i-down"/></svg></summary>
+        <a href="https://buchetino.ro/16-inima-trandafiri-criogenati-mare">Inimă mare</a>
+        <a href="https://buchetino.ro/54-inima-trandafiri-criogenati-gigant">Inimă gigant</a>
+        <a href="https://buchetino.ro/18-trandafiri-criogenati-cutie-medie">Cutie medie</a>
+        <a href="https://buchetino.ro/19-trandafiri-criogenati-cutie-mare">Cutie mare</a>
+        <a href="https://buchetino.ro/35-trandafiri-criogenati-cutii-luxury">Cutii Luxury</a>
+        <a href="https://buchetino.ro/77-trandafiri-criogenati-in-cupola-sticla">În cupolă de sticlă</a>
+        <a href="https://buchetino.ro/15-trandafiri-criogenati">Vezi toate</a>
+      </details>
+      <details>
+        <summary>Florărie non stop <svg><use href="#i-down"/></svg></summary>
+        <a href="https://buchetino.ro/23-inima-trandafiri-naturali-mare">Inimă trandafiri naturali</a>
+        <a href="https://buchetino.ro/24-trandafiri-naturali-cutie-mare">Trandafiri naturali în cutie</a>
+        <a href="https://buchetino.ro/36-cutii-de-lux-cu-flori">Cutii de lux cu flori</a>
+        <a href="https://buchetino.ro/37-lalele">Lalele</a>
+        <a href="https://buchetino.ro/6-florarie-non-stop">Vezi toate</a>
+      </details>
+      <details>
+        <summary>Buchete flori <svg><use href="#i-down"/></svg></summary>
+        <a href="https://buchetino.ro/40-buchete-trandafiri-imperiali">Trandafiri imperiali</a>
+        <a href="https://buchetino.ro/78-buchete-imense-de-bujori">Bujori</a>
+        <a href="https://buchetino.ro/83-buchete-de-lux-">Buchete de lux</a>
+        <a href="https://buchetino.ro/26-buchete-flori-non-stop">Vezi toate</a>
+      </details>
+      <details>
+        <summary>Evenimente <svg><use href="#i-down"/></svg></summary>
+        <a href="https://buchetino.ro/41-buchete-mireasa">Buchete mireasă</a>
+        <a href="https://buchetino.ro/31-decoratiuni-locatii">Decorațiuni locații</a>
+        <a href="https://buchetino.ro/62-buchetino-dolce">Buchetino Dolce</a>
+        <a href="https://buchetino.ro/56-aranjamente-personalizate">Aranjamente personalizate</a>
+        <a href="https://buchetino.ro/28-evenimente">Vezi toate</a>
+      </details>
+      <details>
+        <summary>Băuturi non stop <svg><use href="#i-down"/></svg></summary>
+        <a href="https://buchetino.ro/71-sampanie">Șampanie</a>
+        <a href="https://buchetino.ro/72-coniac">Coniac</a>
+        <a href="https://buchetino.ro/74-whisky">Whisky</a>
+        <a href="https://buchetino.ro/70-bauturi-non-stop">Vezi toate</a>
+      </details>
+      <a href="https://buchetino.ro/60-vouchere">Vouchere</a>
+      <a href="#contact" data-close>Contact</a>
+    </nav>
+    <div class="drawer-foot">
+      <a href="https://buchetino.ro/contul-meu"><svg><use href="#i-user"/></svg> Contul meu</a>
+      <a href="tel:0720701701"><svg><use href="#i-phone"/></svg> 0720 701 701</a>
+    </div>
+  </div>
+
+  <!-- ========== COȘ ========== -->
+  <aside class="drawer drawer--right" id="cartDrawer" aria-hidden="true" aria-label="Coș">
+    <div class="drawer-head">
+      <h3>Coșul tău</h3>
+      <button class="icon-btn" data-close aria-label="Închide"><svg><use href="#i-close"/></svg></button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="cart-total"><span>Subtotal</span><strong id="cartTotal">0 lei</strong></div>
+      <p class="muted small">Livrarea se calculează la finalizarea comenzii.</p>
+      <a class="btn btn-block" href="https://buchetino.ro/cos?action=show">Finalizează comanda</a>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
