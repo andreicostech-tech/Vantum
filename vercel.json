@@ -2,11 +2,14 @@
   "redirects": [
     { "source": "/stickere-moto", "destination": "/stickere-moto/", "permanent": false },
     { "source": "/redesign/buchetino", "destination": "/redesign/buchetino/", "permanent": false },
-    { "source": "/redesign/buchetino1", "destination": "/redesign/buchetino1/", "permanent": false }
+    { "source": "/redesign/buchetino1", "destination": "/redesign/buchetino1/", "permanent": false },
+    { "source": "/redesignwebsite/buchetino", "destination": "/redesignwebsite/buchetino/", "permanent": false }
   ],
   "rewrites": [
     { "source": "/stickere-moto/", "destination": "https://stickere-moto.vercel.app/" },
-    { "source": "/stickere-moto/:path*", "destination": "https://stickere-moto.vercel.app/:path*" }
+    { "source": "/stickere-moto/:path*", "destination": "https://stickere-moto.vercel.app/:path*" },
+    { "source": "/redesignwebsite/buchetino/", "destination": "https://buchetino-site.vercel.app/" },
+    { "source": "/redesignwebsite/buchetino/:path*", "destination": "https://buchetino-site.vercel.app/:path*" }
   ],
   "headers": [
     {
@@ -14,7 +17,7 @@
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     },
     {
-      "source": "/redesign/(.*)",
+      "source": "/(redesign|redesignwebsite)/(.*)",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ]
