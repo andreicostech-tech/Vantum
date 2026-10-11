@@ -82,7 +82,7 @@ export async function build({ drafts = false } = {}) {
   await write("sitemap.xml",
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${BASE}${u}</loc></url>`).join("\n")}\n</urlset>\n`);
   if (!existsSync(join(ROOT, "robots.txt"))) {
-    await write("robots.txt", `User-agent: *\nDisallow: /admin/\nDisallow: /redesign/\nDisallow: /redesignwebsite/\nDisallow: /stickere-moto/\nSitemap: ${BASE}/sitemap.xml\n`);
+    await write("robots.txt", `User-agent: *\nDisallow: /admin/\nSitemap: ${BASE}/sitemap.xml\n`);
   }
 
   console.log(`✓ build: ${posts.length} articole publicate, ${Date.now() - started} ms`);
