@@ -199,7 +199,7 @@ function openCase(i) {
   openCaseIndex = i;
   const c = t.cases[i];
   caseContent.innerHTML = `
-    <div class="case__hero card__thumb" style="--h:${CASE_HUES[i]}">
+    <div class="case__hero card__thumb" style="--h:${CASE_HUES[i % CASE_HUES.length]}">
       <div class="card__tiles">${'<i></i>'.repeat(12)}</div>
     </div>
     <div class="case__body">
@@ -212,7 +212,7 @@ function openCase(i) {
       <p>${escapeHtml(c.solution)}</p>
       <h3>${t['case.results']}</h3>
       <ul class="case__results">${c.results.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul>
-      <a href="#contact" class="btn btn--primary" id="caseCta" data-open-form="${CASE_TYPES[i]}">${t['case.cta']}</a>
+      <a href="#contact" class="btn btn--primary" id="caseCta" data-open-form="${CASE_TYPES[i] ?? ''}">${t['case.cta']}</a>
     </div>`;
   if (!caseModal.open) caseModal.showModal();
 }
