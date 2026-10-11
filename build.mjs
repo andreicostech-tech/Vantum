@@ -1,5 +1,5 @@
 // Construiește site-ul în dist/ — Vercel rulează asta la fiecare commit.
-//  - copiază site-ul așa cum este (index.html, styles.css, redesign/, favicon etc.)
+//  - copiază site-ul așa cum este (index.html, styles.css, favicon etc.)
 //  - adaugă textele din content/i18n.json în i18n.js
 //  - generează blogul din content/blog/*.md (/blog/ și /blog/<articol>/)
 //  - copiază panoul de control în /admin/
