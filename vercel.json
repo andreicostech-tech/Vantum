@@ -11,6 +11,16 @@
       "source": "/stickere-moto/index.html",
       "destination": "/stickere-moto",
       "permanent": false
+    },
+    {
+      "source": "/redesign/buchetino/",
+      "destination": "/redesign/buchetino",
+      "permanent": false
+    },
+    {
+      "source": "/redesign/buchetino/index.html",
+      "destination": "/redesign/buchetino",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -23,11 +33,32 @@
       "destination": "https://stickere-moto.vercel.app/:path*"
     },
     {
+      "source": "/redesign/buchetino",
+      "destination": "https://buchetino-site.vercel.app/"
+    },
+    {
+      "source": "/redesign/assets/:path*",
+      "destination": "https://buchetino-site.vercel.app/assets/:path*"
+    },
+    {
+      "source": "/redesign/buchetino/:path*",
+      "destination": "https://buchetino-site.vercel.app/:path*"
+    },
+    {
       "source": "/admin/:path*",
       "destination": "/admin/index.html"
     }
   ],
   "headers": [
+    {
+      "source": "/redesign/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
     {
       "source": "/stickere-moto/(.*)",
       "headers": [
