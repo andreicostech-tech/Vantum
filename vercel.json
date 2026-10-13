@@ -3,14 +3,19 @@
   "outputDirectory": "dist",
   "redirects": [
     {
-      "source": "/stickere-moto",
-      "destination": "/stickere-moto/",
+      "source": "/stickere-moto/",
+      "destination": "/stickere-moto",
+      "permanent": false
+    },
+    {
+      "source": "/stickere-moto/index.html",
+      "destination": "/stickere-moto",
       "permanent": false
     }
   ],
   "rewrites": [
     {
-      "source": "/stickere-moto/",
+      "source": "/stickere-moto",
       "destination": "https://stickere-moto.vercel.app/"
     },
     {
