@@ -1,13 +1,37 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/stickere-moto",
+      "destination": "/stickere-moto/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
+    {
+      "source": "/stickere-moto/",
+      "destination": "https://stickere-moto.vercel.app/"
+    },
+    {
+      "source": "/stickere-moto/:path*",
+      "destination": "https://stickere-moto.vercel.app/:path*"
+    },
     {
       "source": "/admin/:path*",
       "destination": "/admin/index.html"
     }
   ],
   "headers": [
+    {
+      "source": "/stickere-moto/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
     {
       "source": "/admin/(.*)",
       "headers": [
