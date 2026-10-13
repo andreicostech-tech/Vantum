@@ -21,6 +21,16 @@
       "source": "/redesign/buchetino/index.html",
       "destination": "/redesign/buchetino",
       "permanent": false
+    },
+    {
+      "source": "/redesign2/buchetino/",
+      "destination": "/redesign2/buchetino",
+      "permanent": false
+    },
+    {
+      "source": "/redesign2/buchetino/index.html",
+      "destination": "/redesign2/buchetino",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -45,11 +55,32 @@
       "destination": "https://buchetino-site.vercel.app/:path*"
     },
     {
+      "source": "/redesign2/buchetino",
+      "destination": "https://buchetino-redesign2.vercel.app/"
+    },
+    {
+      "source": "/redesign2/assets/:path*",
+      "destination": "https://buchetino-redesign2.vercel.app/assets/:path*"
+    },
+    {
+      "source": "/redesign2/buchetino/:path*",
+      "destination": "https://buchetino-redesign2.vercel.app/:path*"
+    },
+    {
       "source": "/admin/:path*",
       "destination": "/admin/index.html"
     }
   ],
   "headers": [
+    {
+      "source": "/redesign2/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
     {
       "source": "/redesign/(.*)",
       "headers": [
