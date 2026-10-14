@@ -61,6 +61,16 @@
       "source": "/redesign/umanitasmedcenter/index.html",
       "destination": "/redesign/umanitasmedcenter",
       "permanent": false
+    },
+    {
+      "source": "/redesign/ianconstruct/",
+      "destination": "/redesign/ianconstruct",
+      "permanent": false
+    },
+    {
+      "source": "/redesign/ianconstruct/index.html",
+      "destination": "/redesign/ianconstruct",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -119,6 +129,14 @@
     {
       "source": "/redesign/umanitasmedcenter/:path*",
       "destination": "https://umanitasmedcenter-redesign.vercel.app/redesign/umanitasmedcenter/:path*"
+    },
+    {
+      "source": "/redesign/ianconstruct",
+      "destination": "https://iabconstruct-redesign.vercel.app/redesign/ianconstruct"
+    },
+    {
+      "source": "/redesign/ianconstruct/:path*",
+      "destination": "https://iabconstruct-redesign.vercel.app/redesign/ianconstruct/:path*"
     },
     {
       "source": "/admin/:path*",
