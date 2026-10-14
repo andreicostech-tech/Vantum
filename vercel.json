@@ -43,13 +43,13 @@
       "permanent": false
     },
     {
-      "source": "/redesign/mentori/",
-      "destination": "/redesign/mentori",
+      "source": "/redesign/mediatori-romania/",
+      "destination": "/redesign/mediatori-romania",
       "permanent": false
     },
     {
-      "source": "/redesign/mentori/index.html",
-      "destination": "/redesign/mentori",
+      "source": "/redesign/mediatori-romania/index.html",
+      "destination": "/redesign/mediatori-romania",
       "permanent": false
     },
     {
@@ -125,12 +125,12 @@
       "destination": "https://bestprofi.vercel.app/:path*"
     },
     {
-      "source": "/redesign/mentori",
-      "destination": "https://mediatori-redesign.vercel.app/redesign/mentori"
+      "source": "/redesign/mediatori-romania",
+      "destination": "https://mediatori-redesign.vercel.app/redesign/mediatori-romania"
     },
     {
-      "source": "/redesign/mentori/:path*",
-      "destination": "https://mediatori-redesign.vercel.app/redesign/mentori/:path*"
+      "source": "/redesign/mediatori-romania/:path*",
+      "destination": "https://mediatori-redesign.vercel.app/redesign/mediatori-romania/:path*"
     },
     {
       "source": "/redesign/umanitasmedcenter",
