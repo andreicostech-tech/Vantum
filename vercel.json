@@ -41,6 +41,16 @@
       "source": "/redesign/bestprofi/index.html",
       "destination": "/redesign/bestprofi",
       "permanent": false
+    },
+    {
+      "source": "/redesign/mentori/",
+      "destination": "/redesign/mentori",
+      "permanent": false
+    },
+    {
+      "source": "/redesign/mentori/index.html",
+      "destination": "/redesign/mentori",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -83,6 +93,14 @@
     {
       "source": "/redesign/bestprofi/:path*",
       "destination": "https://bestprofi.vercel.app/:path*"
+    },
+    {
+      "source": "/redesign/mentori",
+      "destination": "https://mediatori-redesign.vercel.app/redesign/mentori"
+    },
+    {
+      "source": "/redesign/mentori/:path*",
+      "destination": "https://mediatori-redesign.vercel.app/redesign/mentori/:path*"
     },
     {
       "source": "/admin/:path*",
