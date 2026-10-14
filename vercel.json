@@ -51,6 +51,16 @@
       "source": "/redesign/mentori/index.html",
       "destination": "/redesign/mentori",
       "permanent": false
+    },
+    {
+      "source": "/redesign/umanitasmedcenter/",
+      "destination": "/redesign/umanitasmedcenter",
+      "permanent": false
+    },
+    {
+      "source": "/redesign/umanitasmedcenter/index.html",
+      "destination": "/redesign/umanitasmedcenter",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -101,6 +111,14 @@
     {
       "source": "/redesign/mentori/:path*",
       "destination": "https://mediatori-redesign.vercel.app/redesign/mentori/:path*"
+    },
+    {
+      "source": "/redesign/umanitasmedcenter",
+      "destination": "https://umanitasmedcenter-redesign.vercel.app/redesign/umanitasmedcenter"
+    },
+    {
+      "source": "/redesign/umanitasmedcenter/:path*",
+      "destination": "https://umanitasmedcenter-redesign.vercel.app/redesign/umanitasmedcenter/:path*"
     },
     {
       "source": "/admin/:path*",
