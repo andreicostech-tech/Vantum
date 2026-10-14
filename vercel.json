@@ -71,16 +71,6 @@
       "source": "/redesign/iabconstruct/index.html",
       "destination": "/redesign/iabconstruct",
       "permanent": false
-    },
-    {
-      "source": "/redesign/ianconstruct",
-      "destination": "/redesign/iabconstruct",
-      "permanent": false
-    },
-    {
-      "source": "/redesign/ianconstruct/:path*",
-      "destination": "/redesign/iabconstruct/:path*",
-      "permanent": false
     }
   ],
   "rewrites": [
