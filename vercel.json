@@ -71,6 +71,16 @@
       "source": "/redesign/iabconstruct/index.html",
       "destination": "/redesign/iabconstruct",
       "permanent": false
+    },
+    {
+      "source": "/redesign/marketwatch/",
+      "destination": "/redesign/marketwatch",
+      "permanent": false
+    },
+    {
+      "source": "/redesign/marketwatch/index.html",
+      "destination": "/redesign/marketwatch",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -137,6 +147,14 @@
     {
       "source": "/redesign/iabconstruct/:path*",
       "destination": "https://iabconstruct-redesign.vercel.app/redesign/iabconstruct/:path*"
+    },
+    {
+      "source": "/redesign/marketwatch",
+      "destination": "https://marketwatch-redesign.vercel.app/redesign/marketwatch"
+    },
+    {
+      "source": "/redesign/marketwatch/:path*",
+      "destination": "https://marketwatch-redesign.vercel.app/redesign/marketwatch/:path*"
     },
     {
       "source": "/admin/:path*",
