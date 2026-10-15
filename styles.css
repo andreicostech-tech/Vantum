@@ -512,6 +512,24 @@ section { position: relative; }
 /* image zoom on hover */
 .card:hover .card__thumb::before,
 .card:hover .card__tiles { scale: 1.05; }
+/* real photo instead of the drawn rings and tiles */
+.card__thumb--photo::before { display: none; }
+.card__thumb--photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .6), rgba(0, 0, 0, 0) 60%);
+  z-index: 1;
+}
+.card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale .4s ease-in-out;
+}
+.card:hover .card__img { scale: 1.05; }
 .card__tiles i {
   aspect-ratio: 4 / 3;
   border-radius: 5px;
@@ -999,7 +1017,7 @@ section { position: relative; }
 .footer__col .btn { margin-top: 10px; }
 
 .socials { display: flex; gap: 18px; color: #14200a; }
-.socials a { transition: transform .2s ease; }
+.socials a { transition: transform .2s ease; cursor: pointer; }
 .socials a:hover { transform: translateY(-3px); }
 
 /* ============ WHATSAPP BUTTON ============ */

@@ -3,6 +3,15 @@
 const CASE_HUES = [150, 320, 30, 195, 260, 120, 220];
 // which project type (index in `form.types`) each case study's "start a similar project" picks
 const CASE_TYPES = [0, 1, 2, 3, 2, 5, 2];
+// cover photo for each case study, same order; a case without one falls back to the drawn tiles
+const CASE_IMAGES = [
+  'magazin-online', 'salon-infrumusetare', 'restaurant', 'clinica-medicala',
+  'agentie-imobiliara', 'logistica', 'cursuri-online',
+].map((name) => `/assets/projects/${name}.jpg`);
+
+const caseThumb = (i, cls = '', extra = '') => CASE_IMAGES[i]
+  ? `<div class="${cls} card__thumb card__thumb--photo">${extra}<img class="card__img" src="${CASE_IMAGES[i]}" alt="" loading="lazy" decoding="async"></div>`
+  : `<div class="${cls} card__thumb" style="--h:${CASE_HUES[i % CASE_HUES.length]}">${extra}<div class="card__tiles">${'<i></i>'.repeat(12)}</div></div>`;
 
 // ============ LANGUAGE ============
 const LANG_KEY = 'vantum-lang';
@@ -199,9 +208,7 @@ function openCase(i) {
   openCaseIndex = i;
   const c = t.cases[i];
   caseContent.innerHTML = `
-    <div class="case__hero card__thumb" style="--h:${CASE_HUES[i % CASE_HUES.length]}">
-      <div class="card__tiles">${'<i></i>'.repeat(12)}</div>
-    </div>
+    ${caseThumb(i, 'case__hero')}
     <div class="case__body">
       <p class="case__sector">${escapeHtml(c.sector)}</p>
       <h2 class="case__title" id="caseTitle">${escapeHtml(c.title)}</h2>
@@ -274,10 +281,7 @@ let cards = [];
 function renderCards() {
   stage.innerHTML = t.cases.map((c, i) => `
   <article class="card" data-index="${i}" style="--h:${CASE_HUES[i]}" aria-label="${escapeHtml(c.title)}">
-    <div class="card__thumb">
-      <span class="card__brand">${escapeHtml(c.sector)}</span>
-      <div class="card__tiles">${'<i></i>'.repeat(12)}</div>
-    </div>
+    ${caseThumb(i, '', `<span class="card__brand">${escapeHtml(c.sector)}</span>`)}
     <div class="card__body">
       <h3 class="card__title">${escapeHtml(c.title)}</h3>
       <div class="card__tags">${c.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div>

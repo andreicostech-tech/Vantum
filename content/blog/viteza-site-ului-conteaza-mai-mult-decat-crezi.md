@@ -2,6 +2,7 @@
 title: "De ce contează aspectul unui website: design atractiv, viteză și navigare intuitivă"
 date: "2026-10-12"
 excerpt: "Un design atractiv, o viteză bună de încărcare și o navigare intuitivă pot face diferența dintre un vizitator care rămâne pe site și unul care îl părăsește după câteva secunde. "
+cover: "/assets/blog/om-la-birou.jpg"
 tags: ["Strategie","Consultanță"]
 author: "Echipa Vantum"
 lang: "ro"
