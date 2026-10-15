@@ -5,7 +5,7 @@ excerpt: "Un design atractiv, o viteză bună de încărcare și o navigare intu
 tags: ["Strategie","Consultanță"]
 author: "Echipa Vantum"
 lang: "ro"
-draft: true
+draft: false
 ---
 
 De ce contează aspectul unui website: design atractiv, viteză și navigare intuitivă
